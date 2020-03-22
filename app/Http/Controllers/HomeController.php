@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $municipalities = Municipality::all();
 
-        $count_pui = Tally::sum('pui');
+        $count_pui = Tally::sum('pui_mlgu');
         $count_pum = Tally::sum('pum');
         $count_confirmed = Tally::sum('confirmed');
         $count_death = Tally::sum('death');
