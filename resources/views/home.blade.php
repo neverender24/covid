@@ -104,7 +104,7 @@
                       <label class="col-sm-4 col-form-label">Severity</label>
                       <div class="col-sm-8">
                         <select name="confirmed_severe" id="" class="form-control form-control-sm">
-                          <option value=""></option>
+                          <option value="-"></option>
                           <option value="Severe">Severe</option>
                           <option value="Milde">Mild</option>
                         </select>
@@ -114,7 +114,7 @@
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
                         <select name="confirmed_elderly" id="" class="form-control form-control-sm">
-                          <option value=""></option>
+                          <option value="-"></option>
                           <option value="Elderly">Elderly</option>
                           <option value="Elderly">Non-Elderly</option>
                         </select>
@@ -124,7 +124,7 @@
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
                         <select name="confirmed_comorbidity" id="" class="form-control form-control-sm">
-                          <option value=""></option>
+                          <option value="-"></option>
                           <option value="With Comorbidity">With Comorbidity</option>
                           <option value="Without Comorbidity">Without Comorbidity</option>
                         </select>
@@ -144,7 +144,7 @@
                       <label class="col-sm-4 col-form-label">Severity</label>
                       <div class="col-sm-8">
                         <select name="death_severe" id="" class="form-control form-control-sm">
-                          <option value=""></option>
+                          <option value="-"></option>
                           <option value="Severe">Severe</option>
                           <option value="Milde">Mild</option>
                         </select>
@@ -154,7 +154,7 @@
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
                         <select name="death_elderly" id="" class="form-control form-control-sm">
-                          <option value=""></option>
+                          <option value="-"></option>
                           <option value="Elderly">Elderly</option>
                           <option value="Elderly">Non-Elderly</option>
                         </select>
@@ -164,7 +164,7 @@
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
                         <select name="death_comorbidity" id="" class="form-control form-control-sm">
-                          <option value=""></option>
+                          <option value="-"></option>
                           <option value="With Comorbidity">With Comorbidity</option>
                           <option value="Without Comorbidity">Without Comorbidity</option>
                         </select>
