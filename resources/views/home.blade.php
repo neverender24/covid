@@ -37,11 +37,11 @@
               </div>
             </div>
             <div class="form-group row">
-                  <label class="col-4 col-form-label">Date</label>
-                  <div class="col-8">
-                    <input type="date" class="form-control form-control-sm" name="date_updated" value="0">
-                  </div>
-                </div>
+              <label class="col-4 col-form-label">Date</label>
+              <div class="col-8">
+                <input type="date" class="form-control form-control-sm" name="date_updated" value="0">
+              </div>
+            </div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">LGU</a>
@@ -56,6 +56,12 @@
                   <label class="col-4 col-form-label">PUM</label>
                   <div class="col-8">
                     <input type="number" class="form-control form-control-sm" name="pum" value="0">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 col-form-label">PUM w/ Symptoms</label>
+                  <div class="col-8">
+                    <input type="number" class="form-control form-control-sm" name="pum_symptom" value="0">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -92,6 +98,12 @@
 
               </div>
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="form-group row">
+                  <label class="col-sm-4 col-form-label">PUI</label>
+                  <div class="col-8">
+                    <input type="number" class="form-control form-control-sm" name="pui_pho" value="0">
+                  </div>
+                </div>
                 <div class="card">
                   <div class="card-body">
                     <div class="form-group row">
@@ -192,7 +204,7 @@
             </div>
             <div class="form-group row pt-2">
               <div class="col-4 offset-4">
-              <button type="submit" class="btn btn-primary btn-block">Update</button>
+                <button type="submit" class="btn btn-primary btn-block">Update</button>
               </div>
             </div>
           </form>
@@ -201,7 +213,7 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-header">Summary</div>
 
         <div class="card-body">
