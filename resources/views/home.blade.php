@@ -92,31 +92,46 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Severity</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_severe" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Severe">Severe</option>
-                          <option value="Milde">Mild</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Mild</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_mild" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Severe</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_severe" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -134,31 +149,46 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Severity</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_discharged_severe" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Severe">Severe</option>
-                          <option value="Milde">Mild</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Mild</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_discharged_mild" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Severe</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_discharged_severe" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_discharged_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_discharged_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_discharged_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_discharged_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_discharged_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_discharged_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -176,31 +206,46 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Severity</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_referred_severe" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Severe">Severe</option>
-                          <option value="Milde">Mild</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Mild</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_referred_mild" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Severe</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_referred_severe" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_referred_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_referred_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_referred_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_referred_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_referred_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_referred_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -218,31 +263,46 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Severity</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_deaths_severe" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Severe">Severe</option>
-                          <option value="Milde">Mild</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Mild</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_deaths_mild" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Severe</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_deaths_severe" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_deaths_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_deaths_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_deaths_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="pui_brgy_deaths_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_brgy_deaths_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_brgy_deaths_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -264,21 +324,31 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="pui_admitted_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_admitted_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_admitted_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="pui_admitted_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_admitted_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_admitted_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -296,21 +366,31 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="pui_deaths_nc_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_deaths_nc_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_deaths_nc_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="pui_deaths_nc_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_deaths_nc_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_deaths_nc_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -328,21 +408,31 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="pui_negative_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_negative_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_negative_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="pui_negative_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_negative_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_negative_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -360,21 +450,31 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="pui_recovered_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_recovered_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_recovered_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="pui_recovered_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_recovered_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_recovered_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -392,21 +492,31 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="pui_deaths_n_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_deaths_n_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_deaths_n_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="pui_deaths_n_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="pui_deaths_n_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="pui_deaths_n_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -424,21 +534,31 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="covid_positive_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="covid_positive_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="covid_positive_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="covid_positive_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="covid_positive_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="covid_positive_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -456,21 +576,31 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="covid_deaths_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="covid_deaths_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="covid_deaths_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="covid_deaths_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="covid_deaths_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="covid_deaths_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -480,7 +610,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">Covid Positive</label>
+                      <label class="col-sm-4 col-form-label">Covid Discharged</label>
                       <div class="col-sm-8">
                         <input type="number" class="form-control form-control-sm" name="covid_discharged" value="0">
                       </div>
@@ -488,21 +618,31 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Age Group</label>
                       <div class="col-sm-8">
-                        <select name="covid_discharged_elderly" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="Elderly">Elderly</option>
-                          <option value="Elderly">Non-Elderly</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Elderly</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="covid_discharged_elderly" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">Not</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="covid_discharged_not_elderly" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Comorbidity</label>
                       <div class="col-sm-8">
-                        <select name="covid_discharged_comorbidity" id="" class="form-control form-control-sm">
-                          <option value="-"></option>
-                          <option value="With Comorbidity">With Comorbidity</option>
-                          <option value="Without Comorbidity">Without Comorbidity</option>
-                        </select>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">With</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm form-control-block" name="covid_discharged_with_comorbidity" value="0">
+                          </div>
+                          <label class="col-sm-3 col-form-label">No</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control form-control-sm" name="covid_discharged_no_comorbidity" value="0">
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
