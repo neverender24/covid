@@ -78,7 +78,7 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <dashboard></dashboard>
         </main>
     </div>
     <script src="{{ asset('js/app.js') }}" defer></script>

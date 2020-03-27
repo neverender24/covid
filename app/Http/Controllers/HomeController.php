@@ -39,7 +39,10 @@ class HomeController extends Controller
         $puiDeaths = $this->getAllBrgyPuiDeaths() + $this->getAllPuiDeathsNotConfirmed();
         $pumDeaths = $this->getAllPumDeaths();
 
-
+        $tallies = $this->model->where('id','!=',0)->paginate(10);
+        $action = 'add';
+        $id="";
+        
         return view('home', compact(
             'municipalities',
             'completedQuarantine', 
@@ -51,7 +54,10 @@ class HomeController extends Controller
             'covidPositiveDeaths',
             'puiDeaths',
             'pumDeaths',
-            'puis'
+            'puis',
+            'tallies',
+            'action',
+            'id'
         ));
     }
 
