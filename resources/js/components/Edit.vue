@@ -2,7 +2,7 @@
   <!-- Modal -->
   <div
     class="modal fade"
-    id="createModal"
+    id="editModal"
     tabindex="-1"
     role="dialog"
     aria-labelledby="exampleModalLabel"
@@ -439,7 +439,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary mr-auto" @click="save()">Save</button>
+          <button type="button" class="btn btn-danger mr-auto" @click="deleteRecord()">Delete</button>
+          <button type="button" class="btn btn-primary mr-auto" @click="save()">Save</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -451,9 +452,9 @@
  
 <script>
 export default {
+  props: ["list"],
   data() {
     return {
-      list: {},
       municipalities: [],
       barangays: []
     };
@@ -472,12 +473,47 @@ export default {
         });
     },
     save() {
-      axios.post("tally", this.list).then(response => {
-          this.$snotify.success("Save successfully", "Done");
-        this.list = {}
+      axios.patch("tally/" + this.list.recid, this.list).then(response => {
+        this.$snotify.success("Updated successfully", "Done");
         this.$emit("refresh");
       });
-    }
+    },
+
+    deleteRecord() {
+            this.$snotify.confirm(
+                "Are you sure you want to delete?",
+                "Deletion",
+                {
+                    position: "centerCenter",
+                    backdrop: 0.4,
+                    buttons: [
+                        {
+                            text: "Yes",
+                            action: toast => {
+                                axios
+                                    .delete("tally/" + this.list.recid)
+                                    .then(response => {
+                                        $("#editModal").modal("hide");
+                                        this.$emit("refresh");
+                                        this.$snotify.success(
+                                            "Deleted successfully",
+                                            "Done"
+                                        );
+                                        this.$snotify.remove(toast.id);
+                                    });
+                            }
+                        },
+                        {
+                            text: "No",
+                            action: toast => {
+                                this.$snotify.remove(toast.id);
+                            },
+                            bold: true
+                        }
+                    ]
+                }
+            );
+        }
   }
 };
 </script>

@@ -26,39 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $municipalities = Municipality::all();
-
-        $pumToDate = $this->getAllPums() - $this->getAllQuarantines() - $this->getAllReferredPums() - $this->getAllPumDeaths();
-        $completedQuarantine = $this->getAllQuarantines();
-        $puiInBiu = $this->getAllBrgyPui() - $this->getAllBrgyPuiDischarged() - $this->getAllBrgyPuiReferred() - $this->getAllBrgyPuiDeaths();
-        $puiInHospitals = $this->getAllPuiAdmitted() - $this->getAllPuiDeathsNotConfirmed() - $this->getAllPuiRecovered() - $this->getAllBrgyPuiDeaths() - $this->getAllCovidPositive();
-        $puiDischarged = $this->getAllBrgyPuiDischarged() + $this->getAllPuiRecovered();
-        $puis = $this->getAllBrgyPui() + $this->getAllPuiAdmitted();
-        $covidPositive = $this->getAllCovidPositive();
-        $covidPositiveDeaths = $this->getAllCovidDeaths();
-        $puiDeaths = $this->getAllBrgyPuiDeaths() + $this->getAllPuiDeathsNotConfirmed();
-        $pumDeaths = $this->getAllPumDeaths();
-
-        $tallies = $this->model->where('id','!=',0)->paginate(10);
-        $action = 'add';
-        $id="";
-        
-        return view('home', compact(
-            'municipalities',
-            'completedQuarantine', 
-            'pumToDate', 
-            'puiInBiu',
-            'puiInHospitals',
-            'puiDischarged',
-            'covidPositive',
-            'covidPositiveDeaths',
-            'puiDeaths',
-            'pumDeaths',
-            'puis',
-            'tallies',
-            'action',
-            'id'
-        ));
+        return view('home');
     }
 
     public function getAllPums() {

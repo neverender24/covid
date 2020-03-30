@@ -2371,599 +2371,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {}
+  data: function data() {
+    return {
+      list: {},
+      municipalities: [],
+      barangays: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("get-municipalities").then(function (response) {
+      _this.municipalities = response.data;
+    });
+  },
+  methods: {
+    getBarangays: function getBarangays() {
+      var _this2 = this;
+
+      axios.post("get-barangays", {
+        municipality_id: this.list.municipality_id
+      }).then(function (response) {
+        _this2.barangays = response.data;
+      });
+    },
+    save: function save() {
+      var _this3 = this;
+
+      axios.post("tally", this.list).then(function (response) {
+        _this3.$snotify.success("Save successfully", "Done");
+
+        _this3.list = {};
+
+        _this3.$emit("refresh");
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2980,8 +2424,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _charts_LineChart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./charts/LineChart.js */ "./resources/js/components/charts/LineChart.js");
-/* harmony import */ var _Summary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Summary */ "./resources/js/components/Summary.vue");
-/* harmony import */ var _Create__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Create */ "./resources/js/components/Create.vue");
+/* harmony import */ var _helpers_datatable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/datatable */ "./resources/js/helpers/datatable.vue");
+/* harmony import */ var _helpers_pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/pagination */ "./resources/js/helpers/pagination.vue");
+/* harmony import */ var _Summary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Summary */ "./resources/js/components/Summary.vue");
+/* harmony import */ var _Create__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Create */ "./resources/js/components/Create.vue");
+/* harmony import */ var _Edit__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Edit */ "./resources/js/components/Edit.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3016,14 +2463,186 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Summary: _Summary__WEBPACK_IMPORTED_MODULE_2__["default"],
-    Create: _Create__WEBPACK_IMPORTED_MODULE_3__["default"],
-    LineChart: _charts_LineChart_js__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Summary: _Summary__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Create: _Create__WEBPACK_IMPORTED_MODULE_5__["default"],
+    LineChart: _charts_LineChart_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Datatable: _helpers_datatable__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Pagination: _helpers_pagination__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Edit: _Edit__WEBPACK_IMPORTED_MODULE_6__["default"]
+  },
+  data: function data() {
+    var sortOrders = {};
+    var columns = [{
+      width: "25%",
+      label: "Date",
+      name: "date"
+    }, {
+      width: "35%",
+      label: "Municipality",
+      name: "municipality"
+    }, {
+      width: "32%",
+      label: "Barangay",
+      name: "barangay"
+    }, {
+      width: "3%",
+      label: "",
+      name: "action"
+    }];
+    columns.forEach(function (column) {
+      sortOrders[column.name] = -1;
+    });
+    return {
+      columns: columns,
+      sortKey: "id",
+      sortOrders: sortOrders,
+      tableData: {
+        draw: 0,
+        length: 5,
+        search: "",
+        column: 0,
+        dir: "desc",
+        municipality_id: 0,
+        barangay_id: 0,
+        date_updated: ""
+      },
+      pagination: {
+        lastPage: "",
+        currentPage: "",
+        total: "",
+        lastPageUrl: "",
+        nextPageUrl: "",
+        prevPageUrl: "",
+        from: "",
+        to: ""
+      },
+      data: {},
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      },
+      datacollection: {},
+      editData: [],
+      selectedMun: 0,
+      selectedBrgy: 0,
+      municipalities: [],
+      barangays: [],
+      filter: false
+    };
   },
   mounted: function mounted() {
     var _this = this;
@@ -3034,6 +2653,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _this.getData();
+
+              axios.get("get-municipalities").then(function (response) {
+                _this.municipalities = response.data;
+              });
+
               dynamicColors = function dynamicColors() {
                 var r = Math.floor(Math.random() * 255);
                 var g = Math.floor(Math.random() * 255);
@@ -3052,7 +2677,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               _this.fillDataMunicipality(municipalityChart, municipalityLabels);
 
-            case 4:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -3060,24 +2685,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  data: function data() {
-    return {
-      data: {},
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        scales: {
-          xAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      },
-      datacollection: {}
-    };
-  },
   methods: {
+    configPagination: function configPagination(data) {
+      this.pagination.lastPage = data.last_page;
+      this.pagination.currentPage = data.current_page;
+      this.pagination.total = data.total;
+      this.pagination.lastPageUrl = data.last_page_url;
+      this.pagination.prevPageUrl = data.prev_page_url;
+      this.pagination.nextPageUrl = data.next_page_url;
+      this.pagination.from = data.from;
+      this.pagination.to = data.to;
+    },
+    sortBy: function sortBy(key) {
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
+      this.tableData.column = this.getIndex(this.columns, "name", key);
+      this.tableData.dir = this.sortOrders[key] === 1 ? "asc" : "desc";
+      this.getData();
+    },
+    getIndex: function getIndex(array, key, value) {
+      return array.findIndex(function (i) {
+        return i[key] == value;
+      });
+    },
+    getData: function getData() {
+      var _this2 = this;
+
+      var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "tally";
+      this.loading = !this.loading;
+      axios.get(url, {
+        params: this.tableData
+      }).then(function (response) {
+        var data = response.data;
+
+        if (_this2.tableData.draw == data.draw) {
+          _this2.data = data.data.data;
+
+          _this2.configPagination(data.data);
+        }
+
+        _this2.loading = !_this2.loading;
+      });
+    },
     fillDataMunicipality: function fillDataMunicipality(chart, labels) {
       return this.datacollection = {
         labels: labels,
@@ -3086,7 +2735,552 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
     },
     create_record: function create_record() {
-      $('.modal').modal('show');
+      $("#createModal").modal("show");
+    },
+    edit: function edit(id) {
+      var _this3 = this;
+
+      $("#editModal").modal("show");
+      axios.get("tally/" + id + "/edit").then(function (response) {
+        _this3.editData = response.data;
+      });
+    },
+    getBarangays: function getBarangays() {
+      var _this4 = this;
+
+      axios.post("get-barangays", {
+        municipality_id: this.tableData.municipality_id
+      }).then(function (response) {
+        _this4.barangays = response.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Edit.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Edit.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["list"],
+  data: function data() {
+    return {
+      municipalities: [],
+      barangays: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("get-municipalities").then(function (response) {
+      _this.municipalities = response.data;
+    });
+  },
+  methods: {
+    getBarangays: function getBarangays() {
+      var _this2 = this;
+
+      axios.post("get-barangays", {
+        municipality_id: this.list.municipality_id
+      }).then(function (response) {
+        _this2.barangays = response.data;
+      });
+    },
+    save: function save() {
+      var _this3 = this;
+
+      axios.patch("tally/" + this.list.recid, this.list).then(function (response) {
+        _this3.$snotify.success("Updated successfully", "Done");
+
+        _this3.$emit("refresh");
+      });
+    },
+    deleteRecord: function deleteRecord() {
+      var _this4 = this;
+
+      this.$snotify.confirm("Are you sure you want to delete?", "Deletion", {
+        position: "centerCenter",
+        backdrop: 0.4,
+        buttons: [{
+          text: "Yes",
+          action: function action(toast) {
+            axios["delete"]("tally/" + _this4.list.recid).then(function (response) {
+              $("#editModal").modal("hide");
+
+              _this4.$emit("refresh");
+
+              _this4.$snotify.success("Deleted successfully", "Done");
+
+              _this4.$snotify.remove(toast.id);
+            });
+          }
+        }, {
+          text: "No",
+          action: function action(toast) {
+            _this4.$snotify.remove(toast.id);
+          },
+          bold: true
+        }]
+      });
     }
   }
 });
@@ -3153,6 +3347,80 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log("Component mounted.");
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/helpers/datatable.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/helpers/datatable.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["columns", "sortKey", "sortOrders", "loading"]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/helpers/pagination.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/helpers/pagination.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["pagination"],
+  created: function created() {}
 });
 
 /***/ }),
@@ -23845,6 +24113,112 @@ core_controller.helpers.each(
 return src;
 
 })));
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard.vue?vue&type=style&index=0&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom_view {\n  display: none;\n  cursor: pointer;\n}\ntr:hover .custom_view {\n  display: unset;\n}\n.create_new {\n  cursor: pointer;\n  font-weight: bold;\n}\n.create_new:hover {\n  text-decoration: underline;\n}\n.filtercol{\n    padding-right: 5px !important;\n    padding-left: 5px !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
 
 
 /***/ }),
@@ -72943,6 +73317,545 @@ try {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Dashboard.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/timers-browserify/main.js":
 /*!************************************************!*\
   !*** ./node_modules/timers-browserify/main.js ***!
@@ -73317,2183 +74230,1541 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "createModal",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "exampleModalLabel",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-4" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { staticClass: "col-sm" }, [
+                            _vm._v(
+                              "\n                      Municipality\n                      "
+                            ),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.list.municipality_id,
+                                    expression: "list.municipality_id"
+                                  }
+                                ],
+                                staticClass: "form-control form-control-sm",
+                                attrs: { required: "" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.list,
+                                        "municipality_id",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      return _vm.getBarangays()
+                                    }
+                                  ]
+                                }
+                              },
+                              _vm._l(_vm.municipalities, function(item) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: item.recid,
+                                    domProps: { value: item.recid }
+                                  },
+                                  [_vm._v(_vm._s(item.munname))]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-4" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { staticClass: "col-sm" }, [
+                            _vm._v(
+                              "\n                      Barangay\n                      "
+                            ),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.list.barangay_id,
+                                    expression: "list.barangay_id"
+                                  }
+                                ],
+                                staticClass: "form-control form-control-sm",
+                                attrs: { required: "" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.list,
+                                      "barangay_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              _vm._l(_vm.barangays, function(item) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: item.recid,
+                                    domProps: { value: item.recid }
+                                  },
+                                  [_vm._v(_vm._s(item.brgyname))]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-4" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { staticClass: "col-sm" }, [
+                            _vm._v(
+                              "\n                      Date\n                      "
+                            ),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.list.date_updated,
+                                  expression: "list.date_updated"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "date", required: "" },
+                              domProps: { value: _vm.list.date_updated },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.list,
+                                    "date_updated",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "tab-content pt-3",
+                    attrs: { id: "myTabContent" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "tab-pane fade show active",
+                        attrs: {
+                          id: "home",
+                          role: "tabpanel",
+                          "aria-labelledby": "home-tab"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-6" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-6 col-form-label" },
+                                    [_vm._v("New PUM")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pum_brgy,
+                                          expression: "list.pum_brgy"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: { value: _vm.list.pum_brgy },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pum_brgy",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("Completed Quarantine")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pum_brgy_completed_quarantine,
+                                          expression:
+                                            "list.pum_brgy_completed_quarantine"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pum_brgy_completed_quarantine
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pum_brgy_completed_quarantine",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-6" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("Referred to PUI")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pum_brgy_referred_pui,
+                                          expression:
+                                            "list.pum_brgy_referred_pui"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value: _vm.list.pum_brgy_referred_pui
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pum_brgy_referred_pui",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(2)
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_severe_elderly_wcom,
+                                          expression:
+                                            "list.pui_brgy_severe_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_severe_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_severe_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_severe_notelderly_wcom,
+                                          expression:
+                                            "list.pui_brgy_severe_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_brgy_severe_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_severe_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_brgy_mild_elderly_wcom,
+                                          expression:
+                                            "list.pui_brgy_mild_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_mild_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_mild_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_mild_notelderly_wcom,
+                                          expression:
+                                            "list.pui_brgy_mild_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_mild_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_mild_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("W/O Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_severe_elderly_ncom,
+                                          expression:
+                                            "list.pui_brgy_severe_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_severe_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_severe_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_severe_notelderly_ncom,
+                                          expression:
+                                            "list.pui_brgy_severe_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_brgy_severe_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_severe_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_brgy_mild_elderly_ncom,
+                                          expression:
+                                            "list.pui_brgy_mild_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_mild_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_mild_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_mild_notelderly_ncom,
+                                          expression:
+                                            "list.pui_brgy_mild_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_mild_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_mild_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("PUI")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pui_brgy,
+                                          expression: "list.pui_brgy"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: { value: _vm.list.pui_brgy },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_severe_elderly_wcom,
+                                          expression:
+                                            "list.pui_dis_severe_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_severe_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_severe_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_severe_notelderly_wcom,
+                                          expression:
+                                            "list.pui_dis_severe_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_dis_severe_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_severe_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_dis_mild_elderly_wcom,
+                                          expression:
+                                            "list.pui_dis_mild_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_mild_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_mild_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_mild_notelderly_wcom,
+                                          expression:
+                                            "list.pui_dis_mild_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_mild_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_mild_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("W/O Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_severe_elderly_ncom,
+                                          expression:
+                                            "list.pui_dis_severe_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_severe_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_severe_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_severe_notelderly_ncom,
+                                          expression:
+                                            "list.pui_dis_severe_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_dis_severe_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_severe_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_dis_mild_elderly_ncom,
+                                          expression:
+                                            "list.pui_dis_mild_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_mild_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_mild_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_mild_notelderly_ncom,
+                                          expression:
+                                            "list.pui_dis_mild_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_mild_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_mild_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("PUI")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pui_dis,
+                                          expression: "list.pui_dis"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: { value: _vm.list.pui_dis },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_severe_elderly_wcom,
+                                          expression:
+                                            "list.pui_ref_severe_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_severe_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_severe_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_severe_notelderly_wcom,
+                                          expression:
+                                            "list.pui_ref_severe_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_ref_severe_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_severe_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_ref_mild_elderly_wcom,
+                                          expression:
+                                            "list.pui_ref_mild_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_mild_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_mild_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_mild_notelderly_wcom,
+                                          expression:
+                                            "list.pui_ref_mild_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_mild_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_mild_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("W/O Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_severe_elderly_ncom,
+                                          expression:
+                                            "list.pui_ref_severe_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_severe_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_severe_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_severe_notelderly_ncom,
+                                          expression:
+                                            "list.pui_ref_severe_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_ref_severe_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_severe_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_ref_mild_elderly_ncom,
+                                          expression:
+                                            "list.pui_ref_mild_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_mild_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_mild_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_mild_notelderly_ncom,
+                                          expression:
+                                            "list.pui_ref_mild_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_mild_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_mild_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("PUI")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pui_ref,
+                                          expression: "list.pui_ref"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: { value: _vm.list.pui_ref },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary mr-auto",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.save()
+                    }
+                  }
+                },
+                [_vm._v("Save")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("Close")]
+              )
+            ])
+          ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Municipality Report")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "exampleModal",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalLabel",
-          "aria-hidden": "true"
-        }
-      },
+      "ul",
+      { staticClass: "nav nav-tabs", attrs: { id: "myTab", role: "tablist" } },
       [
-        _c(
-          "div",
-          { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    staticClass: "modal-title",
-                    attrs: { id: "exampleModalLabel" }
-                  },
-                  [_vm._v("Municipality Report")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("form", [
-                    _c("div", { staticClass: "card" }, [
-                      _c("div", { staticClass: "card-body" }, [
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c(
-                            "label",
-                            { staticClass: "col-sm-4 col-form-label" },
-                            [_vm._v("Municipality")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-8" }, [
-                            _c(
-                              "select",
-                              {
-                                staticClass: "form-control form-control-sm",
-                                attrs: {
-                                  id: "municipality",
-                                  name: "municipality_id",
-                                  required: ""
-                                }
-                              },
-                              [_c("option", { attrs: { valu: "" } })]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c(
-                            "label",
-                            { staticClass: "col-sm-4 col-form-label" },
-                            [_vm._v("Barangay")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-8" }, [
-                            _c("select", {
-                              staticClass: "form-control form-control-sm",
-                              attrs: {
-                                id: "barangay",
-                                name: "barangay_id",
-                                required: ""
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c("label", { staticClass: "col-4 col-form-label" }, [
-                            _vm._v("Date")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-8" }, [
-                            _c("input", {
-                              staticClass: "form-control form-control-sm",
-                              attrs: {
-                                type: "date",
-                                name: "date_updated",
-                                required: ""
-                              }
-                            })
-                          ])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      {
-                        staticClass: "nav nav-tabs",
-                        attrs: { id: "myTab", role: "tablist" }
-                      },
-                      [
-                        _c("li", { staticClass: "nav-item" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link active",
-                              attrs: {
-                                id: "home-tab",
-                                "data-toggle": "tab",
-                                href: "#home",
-                                role: "tab",
-                                "aria-controls": "home",
-                                "aria-selected": "true"
-                              }
-                            },
-                            [_vm._v("LGU")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "nav-item" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link",
-                              attrs: {
-                                id: "profile-tab",
-                                "data-toggle": "tab",
-                                href: "#profile",
-                                role: "tab",
-                                "aria-controls": "profile",
-                                "aria-selected": "false"
-                              }
-                            },
-                            [_vm._v("PHO")]
-                          )
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "tab-content pt-3",
-                        attrs: { id: "myTabContent" }
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane fade show active",
-                            attrs: {
-                              id: "home",
-                              role: "tabpanel",
-                              "aria-labelledby": "home-tab"
-                            }
-                          },
-                          [
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-4 col-form-label" },
-                                    [_vm._v("New PUM")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "brgy_pum"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Completed Quarantine")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "brgy_completed_quarantine"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Referred to PUI")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "brgy_referred_pui"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("PUM Death")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "brgy_pum_death"
-                                      }
-                                    })
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("PUI")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "pui_brgy"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Severity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Mild")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_mild"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Severe")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_severe"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("PUI Discharged")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "pui_brgy_discharged"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Severity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Mild")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_discharged_mild"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Severe")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_discharged_severe"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_brgy_discharged_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_brgy_discharged_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_brgy_discharged_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_brgy_discharged_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("PUI Referred")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "pui_brgy_referred"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Severity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Mild")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_referred_mild"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Severe")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_referred_severe"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_referred_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_brgy_referred_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_brgy_referred_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_brgy_referred_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("PUI Deaths")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "pui_brgy_deaths"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Severity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Mild")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_deaths_mild"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Severe")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_deaths_severe"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_brgy_deaths_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_brgy_deaths_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_brgy_deaths_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_brgy_deaths_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane fade",
-                            attrs: {
-                              id: "profile",
-                              role: "tabpanel",
-                              "aria-labelledby": "profile-tab"
-                            }
-                          },
-                          [
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("PUI Admitted")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "pui_admitted"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_admitted_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_admitted_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_admitted_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_admitted_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("PUI Death Not Confirmed")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "pui_deaths_nc"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_deaths_nc_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_deaths_nc_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_deaths_nc_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_deaths_nc_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("PUI Negetive")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "pui_negative"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_negative_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_negative_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_negative_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_negative_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("PUI Recovered")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "pui_recovered"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_recovered_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_recovered_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_recovered_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_recovered_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("PUI Death Negative")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "pui_deaths_n"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_deaths_n_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "pui_deaths_n_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_deaths_n_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "pui_deaths_n_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Covid Positive")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "covid_positive"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "covid_positive_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "covid_positive_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "covid_positive_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "covid_positive_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Covid Deaths")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "covid_deaths"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "covid_deaths_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name: "covid_deaths_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "covid_deaths_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "covid_deaths_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Covid Discharged")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c("input", {
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: {
-                                        type: "number",
-                                        name: "covid_discharged"
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Age Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Elderly")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name: "covid_discharged_elderly"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("Not")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "covid_discharged_not_elderly"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group row" }, [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-sm-4 col-form-label" },
-                                    [_vm._v("Comorbidity")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-sm-8" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group row" },
-                                      [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("With")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm form-control-block",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "covid_discharged_with_comorbidity"
-                                            }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "col-sm-3 col-form-label"
-                                          },
-                                          [_vm._v("No")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-sm-3" }, [
-                                          _c("input", {
-                                            staticClass:
-                                              "form-control form-control-sm",
-                                            attrs: {
-                                              type: "number",
-                                              name:
-                                                "covid_discharged_no_comorbidity"
-                                            }
-                                          })
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary mr-auto",
-                    attrs: { type: "button" }
-                  },
-                  [_vm._v("Save")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Close")]
-                )
-              ])
-            ])
-          ]
-        )
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: {
+                id: "home-tab",
+                "data-toggle": "tab",
+                href: "#home",
+                role: "tab",
+                "aria-controls": "home",
+                "aria-selected": "true"
+              }
+            },
+            [_vm._v("LGU")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "profile-tab",
+                "data-toggle": "tab",
+                href: "#profile",
+                role: "tab",
+                "aria-controls": "profile",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("PHO")]
+          )
+        ])
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c("label", { staticClass: "col-sm-6 col-form-label" }, [
+        _vm._v("PUM Death")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "number" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c("label", { staticClass: "col-sm-3 col-form-label" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _c("div", { staticClass: "form-group row" }, [
+          _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
+            _vm._v("Sever Elderly")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
+            _vm._v("Severe Non-Elderly")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
+            _vm._v("Mild Elderly")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
+            _vm._v("Mild Non-Elderly")
+          ])
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -75522,39 +75793,48 @@ var render = function() {
       "div",
       { staticClass: "row justify-content-center" },
       [
-        false ? undefined : _vm._e(),
-        _vm._v(" "),
-        _c("line-chart", {
-          attrs: { "chart-data": _vm.datacollection, options: _vm.options }
+        _c("create", {
+          on: {
+            refresh: function($event) {
+              return _vm.getData()
+            }
+          }
         }),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-4" }, [
-          _c(
-            "div",
-            { staticClass: "card mb-3" },
-            [
-              _c("div", { staticClass: "card-header" }, [_vm._v("Summary")]),
-              _vm._v(" "),
-              _c("Summary")
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("create")
+        _c("edit", {
+          attrs: { list: _vm.editData },
+          on: {
+            refresh: function($event) {
+              return _vm.getData()
+            }
+          }
+        })
       ],
       1
     ),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-10 offset-1" }, [
+      _c("div", { staticClass: "col-8" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
-            _vm._v("\n                    Records\n                    "),
+            _vm._v("\n          Records\n          "),
             _c(
               "button",
               {
-                staticClass: "btn btn-primary btn-sm float-right",
+                staticClass: "btn btn-success btn-sm float-right",
+                on: {
+                  click: function($event) {
+                    _vm.filter = !_vm.filter
+                  }
+                }
+              },
+              [_vm._v("Filter")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-sm float-right mr-1",
                 on: {
                   click: function($event) {
                     return _vm.create_record()
@@ -75565,13 +75845,1847 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" })
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _vm.filter
+                ? _c("div", { staticClass: "row mb-2" }, [
+                    _c("div", { staticClass: "col-3 filtercol" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.tableData.date_updated,
+                              expression: "tableData.date_updated"
+                            }
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          attrs: { type: "date", required: "" },
+                          domProps: { value: _vm.tableData.date_updated },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.tableData,
+                                "date_updated",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-3 filtercol" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.tableData.municipality_id,
+                              expression: "tableData.municipality_id"
+                            }
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          attrs: { required: "" },
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.tableData,
+                                  "municipality_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              },
+                              function($event) {
+                                return _vm.getBarangays()
+                              }
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.municipalities, function(item) {
+                          return _c(
+                            "option",
+                            {
+                              key: item.recid,
+                              domProps: { value: item.recid }
+                            },
+                            [_vm._v(_vm._s(item.munname))]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-3 filtercol" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.tableData.barangay_id,
+                                expression: "tableData.barangay_id"
+                              }
+                            ],
+                            staticClass: "form-control form-control-sm",
+                            attrs: { required: "" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.tableData,
+                                  "barangay_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          _vm._l(_vm.barangays, function(item) {
+                            return _c(
+                              "option",
+                              {
+                                key: item.recid,
+                                domProps: { value: item.recid }
+                              },
+                              [_vm._v(_vm._s(item.brgyname))]
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-2 filtercol" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary btn-sm btn-block",
+                            on: {
+                              click: function($event) {
+                                return _vm.getData()
+                              }
+                            }
+                          },
+                          [_vm._v("Go")]
+                        )
+                      ])
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "datatable",
+                {
+                  attrs: {
+                    columns: _vm.columns,
+                    sortKey: _vm.sortKey,
+                    sortOrders: _vm.sortOrders
+                  },
+                  on: { sort: _vm.sortBy }
+                },
+                [
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.data, function(item) {
+                      return _c("tr", { key: item.id }, [
+                        _c("td", [_vm._v(_vm._s(item.date_updated))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(item.barangay.municipality.munname))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.barangay.brgyname))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "custom_view",
+                              on: {
+                                click: function($event) {
+                                  return _vm.edit(item.recid)
+                                }
+                              }
+                            },
+                            [_vm._v("Edit")]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "py-3 d-flex flex-row align-items-center justify-content-between"
+                },
+                [
+                  _c("pagination", {
+                    attrs: { pagination: _vm.pagination },
+                    on: {
+                      prev: function($event) {
+                        return _vm.getData(_vm.pagination.prevPageUrl)
+                      },
+                      next: function($event) {
+                        return _vm.getData(_vm.pagination.nextPageUrl)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      _vm._s(_vm.pagination.from) +
+                        " to " +
+                        _vm._s(_vm.pagination.to) +
+                        " of " +
+                        _vm._s(_vm.pagination.total) +
+                        " entries"
+                    )
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-4" }, [
+        _c(
+          "div",
+          { staticClass: "card mb-3" },
+          [
+            _c("div", { staticClass: "card-header" }, [_vm._v("Summary")]),
+            _vm._v(" "),
+            _c("Summary")
+          ],
+          1
+        )
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-6" },
+        [
+          _c("line-chart", {
+            attrs: { "chart-data": _vm.datacollection, options: _vm.options }
+          })
+        ],
+        1
+      )
     ])
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Edit.vue?vue&type=template&id=031ccff5&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Edit.vue?vue&type=template&id=031ccff5& ***!
+  \*******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "editModal",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "exampleModalLabel",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-4" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { staticClass: "col-sm" }, [
+                            _vm._v(
+                              "\n                      Municipality\n                      "
+                            ),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.list.municipality_id,
+                                    expression: "list.municipality_id"
+                                  }
+                                ],
+                                staticClass: "form-control form-control-sm",
+                                attrs: { required: "" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.list,
+                                        "municipality_id",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      return _vm.getBarangays()
+                                    }
+                                  ]
+                                }
+                              },
+                              _vm._l(_vm.municipalities, function(item) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: item.recid,
+                                    domProps: { value: item.recid }
+                                  },
+                                  [_vm._v(_vm._s(item.munname))]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-4" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { staticClass: "col-sm" }, [
+                            _vm._v(
+                              "\n                      Barangay\n                      "
+                            ),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.list.barangay_id,
+                                    expression: "list.barangay_id"
+                                  }
+                                ],
+                                staticClass: "form-control form-control-sm",
+                                attrs: { required: "" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.list,
+                                      "barangay_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              _vm._l(_vm.barangays, function(item) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: item.recid,
+                                    domProps: { value: item.recid }
+                                  },
+                                  [_vm._v(_vm._s(item.brgyname))]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-4" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { staticClass: "col-sm" }, [
+                            _vm._v(
+                              "\n                      Date\n                      "
+                            ),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.list.date_updated,
+                                  expression: "list.date_updated"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "date", required: "" },
+                              domProps: { value: _vm.list.date_updated },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.list,
+                                    "date_updated",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "tab-content pt-3",
+                    attrs: { id: "myTabContent" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "tab-pane fade show active",
+                        attrs: {
+                          id: "home",
+                          role: "tabpanel",
+                          "aria-labelledby": "home-tab"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-6" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-6 col-form-label" },
+                                    [_vm._v("New PUM")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pum_brgy,
+                                          expression: "list.pum_brgy"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: { value: _vm.list.pum_brgy },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pum_brgy",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("Completed Quarantine")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pum_brgy_completed_quarantine,
+                                          expression:
+                                            "list.pum_brgy_completed_quarantine"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pum_brgy_completed_quarantine
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pum_brgy_completed_quarantine",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-6" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("Referred to PUI")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pum_brgy_referred_pui,
+                                          expression:
+                                            "list.pum_brgy_referred_pui"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value: _vm.list.pum_brgy_referred_pui
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pum_brgy_referred_pui",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(2)
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_severe_elderly_wcom,
+                                          expression:
+                                            "list.pui_brgy_severe_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_severe_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_severe_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_severe_notelderly_wcom,
+                                          expression:
+                                            "list.pui_brgy_severe_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_brgy_severe_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_severe_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_brgy_mild_elderly_wcom,
+                                          expression:
+                                            "list.pui_brgy_mild_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_mild_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_mild_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_mild_notelderly_wcom,
+                                          expression:
+                                            "list.pui_brgy_mild_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_mild_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_mild_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("W/O Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_severe_elderly_ncom,
+                                          expression:
+                                            "list.pui_brgy_severe_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_severe_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_severe_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_severe_notelderly_ncom,
+                                          expression:
+                                            "list.pui_brgy_severe_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_brgy_severe_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_severe_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_brgy_mild_elderly_ncom,
+                                          expression:
+                                            "list.pui_brgy_mild_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_mild_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_mild_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_brgy_mild_notelderly_ncom,
+                                          expression:
+                                            "list.pui_brgy_mild_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_brgy_mild_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy_mild_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("PUI")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pui_brgy,
+                                          expression: "list.pui_brgy"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: { value: _vm.list.pui_brgy },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_brgy",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_severe_elderly_wcom,
+                                          expression:
+                                            "list.pui_dis_severe_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_severe_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_severe_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_severe_notelderly_wcom,
+                                          expression:
+                                            "list.pui_dis_severe_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_dis_severe_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_severe_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_dis_mild_elderly_wcom,
+                                          expression:
+                                            "list.pui_dis_mild_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_mild_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_mild_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_mild_notelderly_wcom,
+                                          expression:
+                                            "list.pui_dis_mild_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_mild_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_mild_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("W/O Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_severe_elderly_ncom,
+                                          expression:
+                                            "list.pui_dis_severe_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_severe_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_severe_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_severe_notelderly_ncom,
+                                          expression:
+                                            "list.pui_dis_severe_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_dis_severe_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_severe_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_dis_mild_elderly_ncom,
+                                          expression:
+                                            "list.pui_dis_mild_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_mild_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_mild_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_dis_mild_notelderly_ncom,
+                                          expression:
+                                            "list.pui_dis_mild_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_dis_mild_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis_mild_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("PUI")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pui_dis,
+                                          expression: "list.pui_dis"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: { value: _vm.list.pui_dis },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_dis",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_severe_elderly_wcom,
+                                          expression:
+                                            "list.pui_ref_severe_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_severe_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_severe_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_severe_notelderly_wcom,
+                                          expression:
+                                            "list.pui_ref_severe_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_ref_severe_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_severe_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_ref_mild_elderly_wcom,
+                                          expression:
+                                            "list.pui_ref_mild_elderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_mild_elderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_mild_elderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_mild_notelderly_wcom,
+                                          expression:
+                                            "list.pui_ref_mild_notelderly_wcom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_mild_notelderly_wcom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_mild_notelderly_wcom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("W/O Comorbidity")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_severe_elderly_ncom,
+                                          expression:
+                                            "list.pui_ref_severe_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm form-control-block",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_severe_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_severe_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_severe_notelderly_ncom,
+                                          expression:
+                                            "list.pui_ref_severe_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list
+                                            .pui_ref_severe_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_severe_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list.pui_ref_mild_elderly_ncom,
+                                          expression:
+                                            "list.pui_ref_mild_elderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_mild_elderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_mild_elderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.list
+                                              .pui_ref_mild_notelderly_ncom,
+                                          expression:
+                                            "list.pui_ref_mild_notelderly_ncom"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value:
+                                          _vm.list.pui_ref_mild_notelderly_ncom
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref_mild_notelderly_ncom",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group row" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-sm-3 col-form-label" },
+                                [_vm._v("PUI")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-9" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c("div", { staticClass: "col-sm-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pui_ref,
+                                          expression: "list.pui_ref"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: { value: _vm.list.pui_ref },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_ref",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger mr-auto",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteRecord()
+                    }
+                  }
+                },
+                [_vm._v("Delete")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary mr-auto",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.save()
+                    }
+                  }
+                },
+                [_vm._v("Save")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("Close")]
+              )
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Municipality Report")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      { staticClass: "nav nav-tabs", attrs: { id: "myTab", role: "tablist" } },
+      [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: {
+                id: "home-tab",
+                "data-toggle": "tab",
+                href: "#home",
+                role: "tab",
+                "aria-controls": "home",
+                "aria-selected": "true"
+              }
+            },
+            [_vm._v("LGU")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "profile-tab",
+                "data-toggle": "tab",
+                href: "#profile",
+                role: "tab",
+                "aria-controls": "profile",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("PHO")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c("label", { staticClass: "col-sm-6 col-form-label" }, [
+        _vm._v("PUM Death")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "number" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c("label", { staticClass: "col-sm-3 col-form-label" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _c("div", { staticClass: "form-group row" }, [
+          _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
+            _vm._v("Sever Elderly")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
+            _vm._v("Severe Non-Elderly")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
+            _vm._v("Mild Elderly")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
+            _vm._v("Mild Non-Elderly")
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -75645,6 +77759,135 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/helpers/datatable.vue?vue&type=template&id=35fd0068&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/helpers/datatable.vue?vue&type=template&id=35fd0068& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "ui segment" }, [
+    _c("div", { class: _vm.loading ? "ui active inverted dimmer" : "" }, [
+      _c("div", { staticClass: "ui loader" })
+    ]),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "ui very compact selectable table" },
+      [
+        _c("thead", [
+          _c(
+            "tr",
+            _vm._l(_vm.columns, function(column) {
+              return _c(
+                "th",
+                {
+                  key: column.name,
+                  class:
+                    _vm.sortKey === column.name
+                      ? _vm.sortOrders[column.name] > 0
+                        ? "sorting_asc"
+                        : "sorting_desc"
+                      : "sorting",
+                  style: "width:" + column.width + "; cursor:pointer;",
+                  on: {
+                    click: function($event) {
+                      return _vm.$emit("sort", column.name)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(column.label))]
+              )
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _vm._t("default")
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/helpers/pagination.vue?vue&type=template&id=c2d8e33c&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/helpers/pagination.vue?vue&type=template&id=c2d8e33c& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+    _c("ul", { staticClass: "pagination" }, [
+      _vm.pagination.prevPageUrl
+        ? _c("li", { staticClass: "page-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "page-link",
+                on: {
+                  click: function($event) {
+                    return _vm.$emit("prev")
+                  }
+                }
+              },
+              [_vm._v("Previous")]
+            )
+          ])
+        : _c("li", { staticClass: "page-item disabled" }, [
+            _c("a", { staticClass: "page-link" }, [_vm._v("Previous")])
+          ]),
+      _vm._v(" "),
+      _vm.pagination.nextPageUrl
+        ? _c("li", { staticClass: "page-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "page-link",
+                on: {
+                  click: function($event) {
+                    return _vm.$emit("next")
+                  }
+                }
+              },
+              [_vm._v("Next")]
+            )
+          ])
+        : _c("li", { staticClass: "page-item disabled" }, [
+            _c("a", { staticClass: "page-link" }, [_vm._v("Next")])
+          ])
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -89411,7 +91654,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Dashboard_vue_vue_type_template_id_040e2ab9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=template&id=040e2ab9& */ "./resources/js/components/Dashboard.vue?vue&type=template&id=040e2ab9&");
 /* harmony import */ var _Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=script&lang=js& */ "./resources/js/components/Dashboard.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _Dashboard_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Dashboard.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -89419,7 +91664,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Dashboard_vue_vue_type_template_id_040e2ab9___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Dashboard_vue_vue_type_template_id_040e2ab9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -89451,6 +91696,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Dashboard.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/Dashboard.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Dashboard.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Dashboard.vue?vue&type=template&id=040e2ab9&":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/Dashboard.vue?vue&type=template&id=040e2ab9& ***!
@@ -89464,6 +91725,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_template_id_040e2ab9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_template_id_040e2ab9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Edit.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/Edit.vue ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Edit_vue_vue_type_template_id_031ccff5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=031ccff5& */ "./resources/js/components/Edit.vue?vue&type=template&id=031ccff5&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/components/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_031ccff5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_031ccff5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Edit.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Edit.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Edit.vue?vue&type=template&id=031ccff5&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/Edit.vue?vue&type=template&id=031ccff5& ***!
+  \*************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_031ccff5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=031ccff5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Edit.vue?vue&type=template&id=031ccff5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_031ccff5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_031ccff5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -89563,6 +91893,144 @@ var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactivePr
 
 /***/ }),
 
+/***/ "./resources/js/helpers/datatable.vue":
+/*!********************************************!*\
+  !*** ./resources/js/helpers/datatable.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _datatable_vue_vue_type_template_id_35fd0068___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./datatable.vue?vue&type=template&id=35fd0068& */ "./resources/js/helpers/datatable.vue?vue&type=template&id=35fd0068&");
+/* harmony import */ var _datatable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./datatable.vue?vue&type=script&lang=js& */ "./resources/js/helpers/datatable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _datatable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _datatable_vue_vue_type_template_id_35fd0068___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _datatable_vue_vue_type_template_id_35fd0068___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/helpers/datatable.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/helpers/datatable.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/helpers/datatable.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_datatable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./datatable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/helpers/datatable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_datatable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/helpers/datatable.vue?vue&type=template&id=35fd0068&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/helpers/datatable.vue?vue&type=template&id=35fd0068& ***!
+  \***************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_datatable_vue_vue_type_template_id_35fd0068___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./datatable.vue?vue&type=template&id=35fd0068& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/helpers/datatable.vue?vue&type=template&id=35fd0068&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_datatable_vue_vue_type_template_id_35fd0068___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_datatable_vue_vue_type_template_id_35fd0068___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/helpers/pagination.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/helpers/pagination.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pagination_vue_vue_type_template_id_c2d8e33c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pagination.vue?vue&type=template&id=c2d8e33c& */ "./resources/js/helpers/pagination.vue?vue&type=template&id=c2d8e33c&");
+/* harmony import */ var _pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pagination.vue?vue&type=script&lang=js& */ "./resources/js/helpers/pagination.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _pagination_vue_vue_type_template_id_c2d8e33c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _pagination_vue_vue_type_template_id_c2d8e33c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/helpers/pagination.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/helpers/pagination.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/helpers/pagination.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./pagination.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/helpers/pagination.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/helpers/pagination.vue?vue&type=template&id=c2d8e33c&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/helpers/pagination.vue?vue&type=template&id=c2d8e33c& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pagination_vue_vue_type_template_id_c2d8e33c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./pagination.vue?vue&type=template&id=c2d8e33c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/helpers/pagination.vue?vue&type=template&id=c2d8e33c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pagination_vue_vue_type_template_id_c2d8e33c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pagination_vue_vue_type_template_id_c2d8e33c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -89581,8 +92049,8 @@ var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactivePr
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\xampp\htdocs\covid\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\xampp\htdocs\covid\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/covid/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/covid/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

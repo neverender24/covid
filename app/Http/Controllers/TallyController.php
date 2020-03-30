@@ -12,112 +12,65 @@ class TallyController extends Controller
         $this->model = $model;
     }
 
+    public function index(Request $request) {
+        $sortFields     = ['created_at'];
+		$length         = $request->length;
+		$column         = $request->column;
+		$dir            = $request->dir;
+        $municipality_id   = $request->municipality_id;
+        $barangay_id   = $request->barangay_id;
+        $date_updated   = $request->date_updated;
+
+        $index = $this->model->with(['barangay' => function($q){
+            return $q->with(['municipality'])->get();
+        }])->orderBy($sortFields[$column], $dir);
+
+        $this->searchMunicipality($index, $municipality_id);
+        $this->searchBarangay($index, $barangay_id);
+        $this->searchDate($index, $date_updated);
+
+        $index = $index->paginate($length);
+
+    	return ['data'=>$index, 'draw'=> $request->draw];
+    }
+
+    public function searchMunicipality($collection, $searchValue) {
+        if ($searchValue) {
+            return $collection->where('municipality_id', $searchValue);
+        }
+    }
+
+    public function searchBarangay($collection, $searchValue) {
+        if ($searchValue) {
+            return $collection->where('barangay_id',$searchValue);
+        }
+    }
+
+    public function searchDate($collection, $searchValue) {
+        if ($searchValue) {
+            return $collection->where('date_updated',$searchValue);
+        }
+    }
+
     public function store(Request $request) {
-    
-
-        $data = $this->model->create($request->all());
-
-        return redirect('home');
+        return$this->model->create($request->all());
     }
 
     public function edit($id) {
-        $municipalities = Municipality::all();
-
-        $pumToDate = $this->getAllPums() - $this->getAllQuarantines() - $this->getAllReferredPums() - $this->getAllPumDeaths();
-        $completedQuarantine = $this->getAllQuarantines();
-        $puiInBiu = $this->getAllBrgyPui() - $this->getAllBrgyPuiDischarged() - $this->getAllBrgyPuiReferred() - $this->getAllBrgyPuiDeaths();
-        $puiInHospitals = $this->getAllPuiAdmitted() - $this->getAllPuiDeathsNotConfirmed() - $this->getAllPuiRecovered() - $this->getAllBrgyPuiDeaths() - $this->getAllCovidPositive();
-        $puiDischarged = $this->getAllBrgyPuiDischarged() + $this->getAllPuiRecovered();
-        $puis = $this->getAllBrgyPui() + $this->getAllPuiAdmitted();
-        $covidPositive = $this->getAllCovidPositive();
-        $covidPositiveDeaths = $this->getAllCovidDeaths();
-        $puiDeaths = $this->getAllBrgyPuiDeaths() + $this->getAllPuiDeathsNotConfirmed();
-        $pumDeaths = $this->getAllPumDeaths();
-
-        $data = $this->model->findOrFail($id);
-        $tallies = $this->model->where('id','!=',0)->paginate(10);
-        $action = 'edit';
-
-        return view('home', compact(
-            'data',
-            'municipalities',
-            'completedQuarantine', 
-            'pumToDate', 
-            'puiInBiu',
-            'puiInHospitals',
-            'puiDischarged',
-            'covidPositive',
-            'covidPositiveDeaths',
-            'puiDeaths',
-            'pumDeaths',
-            'puis',
-            'tallies',
-            'action',
-            'id'
-        ));
+        return $this->model->where('recid', $id)->first();
     }
 
-    public function getAllPums() {
-        return $this->model->sum('brgy_pum');
+    public function update(Request $request, $id) {
+        $edit = $this->model->findOrFail($id);
+        $edit->update($request->all());
+        
+        return $edit;
     }
 
-    public function getAllQuarantines() {
-        return $this->model->sum('brgy_completed_quarantine');
-    }
+    public function destroy($id) {
+        $delete = $this->model->findOrFail($id);
+        $delete->delete();
 
-    public function getAllReferredPums() {
-        return $this->model->sum('brgy_referred_pui');
-    }
-
-    public function getAllPumDeaths() {
-        return $this->model->sum('brgy_pum_death');
-    }
-
-    public function getAllBrgyPui() {
-        return $this->model->sum('pui_brgy');
-    }
-
-    public function getAllBrgyPuiDischarged() {
-        return $this->model->sum('pui_brgy_discharged');
-    }
-
-    public function getAllBrgyPuiReferred() {
-        return $this->model->sum('pui_brgy_referred');
-    }
-
-    public function getAllBrgyPuiDeaths() {
-        return $this->model->sum('pui_brgy_deaths');
-    }
-
-    public function getAllPuiAdmitted() {
-        return $this->model->sum('pui_admitted');
-    }
-
-    public function getAllPuiDeathsNotConfirmed() {
-        return $this->model->sum('pui_deaths_nc');
-    }
-
-    public function getAllPuiNegative() {
-        return $this->model->sum('pui_negative');
-    }
-
-    public function getAllPuiRecovered() {
-        return $this->model->sum('pui_recovered');
-    }
-
-    public function getAllPuiDeathsNegative() {
-        return $this->model->sum('pui_deaths_n');
-    }
-
-    public function getAllCovidPositive() {
-        return $this->model->sum('covid_positive');
-    }
-
-    public function getAllCovidDeaths() {
-        return $this->model->sum('covid_deaths');
-    }
-
-    public function getAllCovidDischarged() {
-        return $this->model->sum('covid_dischareged');
+        return $delete;
     }
 }
