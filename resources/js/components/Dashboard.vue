@@ -146,10 +146,10 @@ export default {
   data() {
     let sortOrders = {};
     let columns = [
-      { width: "25%", label: "Date", name: "date" },
-      { width: "35%", label: "Municipality", name: "municipality" },
-      { width: "32%", label: "Barangay", name: "barangay" },
-      { width: "3%", label: "", name: "action" }
+      { width: "30%", label: "Date", name: "date" },
+      { width: "30%", label: "Municipality", name: "municipality" },
+      { width: "30%", label: "Barangay", name: "barangay" },
+      { width: "10%", label: "", name: "action" }
     ];
     columns.forEach(column => {
       sortOrders[column.name] = -1;

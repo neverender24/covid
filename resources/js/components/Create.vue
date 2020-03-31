@@ -156,10 +156,10 @@
                   <label class="col-sm-3 col-form-label"></label>
                   <div class="col-sm-9">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label text-center">Sever Elderly</label>
-                      <label class="col-sm-3 col-form-label text-center">Severe Non-Elderly</label>
-                      <label class="col-sm-3 col-form-label text-center">Mild Elderly</label>
-                      <label class="col-sm-3 col-form-label text-center">Mild Non-Elderly</label>
+                      <label class="col-sm-3 col-form-label text-center"><small>Sever Elderly</small></label>
+                      <label class="col-sm-3 col-form-label text-center"><small>Severe Non-Elderly</small></label>
+                      <label class="col-sm-3 col-form-label text-center"><small>Mild Elderly</small></label>
+                      <label class="col-sm-3 col-form-label text-center"><small>Mild Non-Elderly</small></label>
                     </div>
                   </div>
                 </div>
@@ -439,7 +439,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary mr-auto" @click="save()">Save</button>
+          <button type="button" class="btn btn-primary mr-auto" @click="save()">Save</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -448,6 +448,20 @@
   <!-- </div> -->
   <!-- end modal -->
 </template>
+<style>
+.card-body {
+    padding: 5px !important;
+}
+.modal-header {
+    padding: 5px !important;
+}
+.modal-body{
+    padding: 5px 0 !important;
+}
+.modal-footer {
+    padding: unset !important;
+}
+</style>
  
 <script>
 export default {

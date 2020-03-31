@@ -449,7 +449,20 @@
   <!-- </div> -->
   <!-- end modal -->
 </template>
- 
+ <style>
+.card-body {
+    padding: 5px !important;
+}
+.modal-header {
+    padding: 5px !important;
+}
+.modal-body{
+    padding: 5px 0 !important;
+}
+.modal-footer {
+    padding: unset !important;
+}
+</style>
 <script>
 export default {
   props: ["list"],
