@@ -125,7 +125,8 @@
                             <input
                               type="number"
                               class="form-control form-control-sm"
-                              v-model="list.pum_brgy_completed_quarantine"
+                              v-model.number="list.pum_brgy_completed_quarantine"
+                              min="0"
                             />
                           </div>
                         </div>
@@ -156,10 +157,18 @@
                   <label class="col-sm-3 col-form-label"></label>
                   <div class="col-sm-9">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label text-center"><small>Sever Elderly</small></label>
-                      <label class="col-sm-3 col-form-label text-center"><small>Severe Non-Elderly</small></label>
-                      <label class="col-sm-3 col-form-label text-center"><small>Mild Elderly</small></label>
-                      <label class="col-sm-3 col-form-label text-center"><small>Mild Non-Elderly</small></label>
+                      <label class="col-sm-3 col-form-label text-center">
+                        Mild with Co-morbidity
+                      </label>
+                      <label class="col-sm-3 col-form-label text-center">
+                        Severe with Co-morbidity
+                      </label>
+                      <label class="col-sm-3 col-form-label text-center">
+                        Mild w/o Co-morbidity
+                      </label>
+                      <label class="col-sm-3 col-form-label text-center">
+                        Sever w/o Co-morbidity
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -167,71 +176,119 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Comorbidity</label>
+                      <label class="col-sm-3 col-form-label">Elderly</label>
                       <div class="col-sm-9">
                         <div class="form-group row">
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm form-control-block"
-                              v-model="list.pui_brgy_severe_elderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">A</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_brgy_mild_elderly_wcom"
+                                @input="compute_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_brgy_severe_notelderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">B</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_brgy_severe_elderly_wcom"
+                                 @input="compute_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_brgy_mild_elderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">C</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_brgy_mild_elderly_ncom"
+                                 @input="compute_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_brgy_mild_notelderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">D</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_brgy_severe_elderly_ncom"
+                                 @input="compute_pui()"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">W/O Comorbidity</label>
+                      <label class="col-sm-3 col-form-label">Not Elderly</label>
                       <div class="col-sm-9">
                         <div class="form-group row">
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm form-control-block"
-                              v-model="list.pui_brgy_severe_elderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">E</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_brgy_mild_notelderly_wcom"
+                                 @input="compute_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_brgy_severe_notelderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">F</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_brgy_severe_notelderly_wcom"
+                                 @input="compute_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_brgy_mild_elderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">G</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_brgy_mild_notelderly_ncom"
+                                 @input="compute_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_brgy_mild_notelderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">H</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_brgy_severe_notelderly_ncom"
+                                 @input="compute_pui()"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -245,6 +302,7 @@
                               type="number"
                               class="form-control form-control-sm"
                               v-model="list.pui_brgy"
+                              readonly
                             />
                           </div>
                         </div>
@@ -257,77 +315,125 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Comorbidity</label>
+                      <label class="col-sm-3 col-form-label">Elderly</label>
                       <div class="col-sm-9">
                         <div class="form-group row">
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm form-control-block"
-                              v-model="list.pui_dis_severe_elderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">A</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_dis_mild_elderly_wcom"
+                                @input="compute_dis_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_dis_severe_notelderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">B</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_dis_severe_elderly_wcom"
+                                @input="compute_dis_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_dis_mild_elderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">C</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_dis_mild_elderly_ncom"
+                                @input="compute_dis_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_dis_mild_notelderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">D</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_dis_severe_elderly_ncom"
+                                @input="compute_dis_pui()"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">W/O Comorbidity</label>
+                      <label class="col-sm-3 col-form-label">Not Elderly</label>
                       <div class="col-sm-9">
                         <div class="form-group row">
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm form-control-block"
-                              v-model="list.pui_dis_severe_elderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">E</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_dis_mild_notelderly_wcom"
+                                @input="compute_dis_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_dis_severe_notelderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">F</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_dis_severe_notelderly_wcom"
+                                @input="compute_dis_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_dis_mild_elderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">G</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_dis_mild_notelderly_ncom"
+                                @input="compute_dis_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_dis_mild_notelderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">H</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_dis_severe_notelderly_ncom"
+                                @input="compute_dis_pui()"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">PUI</label>
+                      <label class="col-sm-3 col-form-label">Discharged PUI</label>
                       <div class="col-sm-9">
                         <div class="form-group row">
                           <div class="col-sm-3">
@@ -335,6 +441,7 @@
                               type="number"
                               class="form-control form-control-sm"
                               v-model="list.pui_dis"
+                              readonly
                             />
                           </div>
                         </div>
@@ -347,78 +454,126 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Comorbidity</label>
+                      <label class="col-sm-3 col-form-label">Elderly</label>
                       <div class="col-sm-9">
                         <div class="form-group row">
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm form-control-block"
-                              v-model="list.pui_ref_severe_elderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">A</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_ref_mild_elderly_wcom"
+                                @input="compute_ref_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_ref_severe_notelderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">B</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_ref_severe_elderly_wcom"
+                                @input="compute_ref_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_ref_mild_elderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">C</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_ref_mild_elderly_ncom"
+                                @input="compute_ref_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_ref_mild_notelderly_wcom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">D</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_ref_severe_elderly_ncom"
+                                @input="compute_ref_pui()"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">W/O Comorbidity</label>
+                      <label class="col-sm-3 col-form-label">Not Elderly</label>
                       <div class="col-sm-9">
                         <div class="form-group row">
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm form-control-block"
-                              v-model="list.pui_ref_severe_elderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">E</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_ref_mild_notelderly_wcom"
+                                @input="compute_ref_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_ref_severe_notelderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">F</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_ref_severe_notelderly_wcom"
+                                @input="compute_ref_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_ref_mild_elderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">G</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_ref_mild_notelderly_ncom"
+                                @input="compute_ref_pui()"
+                              />
+                            </div>
                           </div>
                           <div class="col-sm-3">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_ref_mild_notelderly_ncom"
-                            />
+                            <div class="input-group input-group-sm mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">H</span>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                v-model="list.pui_ref_severe_notelderly_ncom"
+                                @input="compute_ref_pui()"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">PUI</label>
+                      <label class="col-sm-3 col-form-label">Referred PUI</label>
                       <div class="col-sm-9">
                         <div class="form-group row">
                           <div class="col-sm-3">
@@ -426,6 +581,7 @@
                               type="number"
                               class="form-control form-control-sm"
                               v-model="list.pui_ref"
+                              readonly
                             />
                           </div>
                         </div>
@@ -450,16 +606,16 @@
 </template>
 <style>
 .card-body {
-    padding: 5px !important;
+  padding: 5px !important;
 }
 .modal-header {
-    padding: 5px !important;
+  padding: 5px !important;
 }
-.modal-body{
-    padding: 5px 0 !important;
+.modal-body {
+  padding: 5px 0 !important;
 }
 .modal-footer {
-    padding: unset !important;
+  padding: unset !important;
 }
 </style>
  
@@ -467,7 +623,8 @@
 export default {
   data() {
     return {
-      list: {},
+      list: {
+      },
       municipalities: [],
       barangays: []
     };
@@ -479,6 +636,7 @@ export default {
   },
   methods: {
     getBarangays() {
+      console.log();
       axios
         .post("get-barangays", { municipality_id: this.list.municipality_id })
         .then(response => {
@@ -487,10 +645,52 @@ export default {
     },
     save() {
       axios.post("tally", this.list).then(response => {
-          this.$snotify.success("Save successfully", "Done");
-        this.list = {}
+        this.$snotify.success("Save successfully", "Done");
+        this.list = {};
         this.$emit("refresh");
+      }).catch(error => {
+
+          this.$snotify.error(error.response.data.error, "Error");
       });
+    },
+    compute_pui() {
+        this.list.pui_brgy = 0
+        this.list.pui_brgy = _.sum([
+            parseInt(this.list.pui_brgy_mild_elderly_wcom) | 0,
+            parseInt(this.list.pui_brgy_mild_elderly_ncom) | 0,
+            parseInt(this.list.pui_brgy_mild_notelderly_wcom) | 0,
+            parseInt(this.list.pui_brgy_mild_notelderly_ncom) | 0,
+            parseInt(this.list.pui_brgy_severe_elderly_wcom) | 0,
+            parseInt(this.list.pui_brgy_severe_elderly_ncom) | 0,
+            parseInt(this.list.pui_brgy_severe_notelderly_wcom) | 0,
+            parseInt(this.list.pui_brgy_severe_notelderly_ncom) | 0,
+            ])
+    },
+    compute_dis_pui() {
+        this.list.pui_dis = 0
+        this.list.pui_dis = _.sum([
+            parseInt(this.list.pui_dis_mild_elderly_wcom) | 0,
+            parseInt(this.list.pui_dis_mild_elderly_ncom) | 0,
+            parseInt(this.list.pui_dis_mild_notelderly_wcom) | 0,
+            parseInt(this.list.pui_dis_mild_notelderly_ncom) | 0,
+            parseInt(this.list.pui_dis_severe_elderly_wcom) | 0,
+            parseInt(this.list.pui_dis_severe_elderly_ncom) | 0,
+            parseInt(this.list.pui_dis_severe_notelderly_wcom) | 0,
+            parseInt(this.list.pui_dis_severe_notelderly_ncom) | 0,
+            ])
+    },
+    compute_ref_pui() {
+        this.list.pui_ref = 0
+        this.list.pui_ref = _.sum([
+            parseInt(this.list.pui_ref_mild_elderly_wcom) | 0,
+            parseInt(this.list.pui_ref_mild_elderly_ncom) | 0,
+            parseInt(this.list.pui_ref_mild_notelderly_wcom) | 0,
+            parseInt(this.list.pui_ref_mild_notelderly_ncom) | 0,
+            parseInt(this.list.pui_ref_severe_elderly_wcom) | 0,
+            parseInt(this.list.pui_ref_severe_elderly_ncom) | 0,
+            parseInt(this.list.pui_ref_severe_notelderly_wcom) | 0,
+            parseInt(this.list.pui_ref_severe_notelderly_ncom) | 0,
+            ])
     }
   }
 };

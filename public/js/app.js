@@ -2385,6 +2385,162 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2404,6 +2560,7 @@ __webpack_require__.r(__webpack_exports__);
     getBarangays: function getBarangays() {
       var _this2 = this;
 
+      console.log();
       axios.post("get-barangays", {
         municipality_id: this.list.municipality_id
       }).then(function (response) {
@@ -2419,7 +2576,21 @@ __webpack_require__.r(__webpack_exports__);
         _this3.list = {};
 
         _this3.$emit("refresh");
+      })["catch"](function (error) {
+        _this3.$snotify.error(error.response.data.error, "Error");
       });
+    },
+    compute_pui: function compute_pui() {
+      this.list.pui_brgy = 0;
+      this.list.pui_brgy = _.sum([parseInt(this.list.pui_brgy_mild_elderly_wcom) | 0, parseInt(this.list.pui_brgy_mild_elderly_ncom) | 0, parseInt(this.list.pui_brgy_mild_notelderly_wcom) | 0, parseInt(this.list.pui_brgy_mild_notelderly_ncom) | 0, parseInt(this.list.pui_brgy_severe_elderly_wcom) | 0, parseInt(this.list.pui_brgy_severe_elderly_ncom) | 0, parseInt(this.list.pui_brgy_severe_notelderly_wcom) | 0, parseInt(this.list.pui_brgy_severe_notelderly_ncom) | 0]);
+    },
+    compute_dis_pui: function compute_dis_pui() {
+      this.list.pui_dis = 0;
+      this.list.pui_dis = _.sum([parseInt(this.list.pui_dis_mild_elderly_wcom) | 0, parseInt(this.list.pui_dis_mild_elderly_ncom) | 0, parseInt(this.list.pui_dis_mild_notelderly_wcom) | 0, parseInt(this.list.pui_dis_mild_notelderly_ncom) | 0, parseInt(this.list.pui_dis_severe_elderly_wcom) | 0, parseInt(this.list.pui_dis_severe_elderly_ncom) | 0, parseInt(this.list.pui_dis_severe_notelderly_wcom) | 0, parseInt(this.list.pui_dis_severe_notelderly_ncom) | 0]);
+    },
+    compute_ref_pui: function compute_ref_pui() {
+      this.list.pui_ref = 0;
+      this.list.pui_ref = _.sum([parseInt(this.list.pui_ref_mild_elderly_wcom) | 0, parseInt(this.list.pui_ref_mild_elderly_ncom) | 0, parseInt(this.list.pui_ref_mild_notelderly_wcom) | 0, parseInt(this.list.pui_ref_mild_notelderly_ncom) | 0, parseInt(this.list.pui_ref_severe_elderly_wcom) | 0, parseInt(this.list.pui_ref_severe_elderly_ncom) | 0, parseInt(this.list.pui_ref_severe_notelderly_wcom) | 0, parseInt(this.list.pui_ref_severe_notelderly_ncom) | 0]);
     }
   }
 });
@@ -2782,6 +2953,134 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -24156,7 +24455,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-body {\n    padding: 5px !important;\n}\n.modal-header {\n    padding: 5px !important;\n}\n.modal-body{\n    padding: 5px 0 !important;\n}\n.modal-footer {\n    padding: unset !important;\n}\n", ""]);
+exports.push([module.i, "\n.card-body {\n  padding: 5px !important;\n}\n.modal-header {\n  padding: 5px !important;\n}\n.modal-body {\n  padding: 5px 0 !important;\n}\n.modal-footer {\n  padding: unset !important;\n}\n", ""]);
 
 // exports
 
@@ -74610,17 +74909,18 @@ var render = function() {
                                       directives: [
                                         {
                                           name: "model",
-                                          rawName: "v-model",
+                                          rawName: "v-model.number",
                                           value:
                                             _vm.list
                                               .pum_brgy_completed_quarantine,
                                           expression:
-                                            "list.pum_brgy_completed_quarantine"
+                                            "list.pum_brgy_completed_quarantine",
+                                          modifiers: { number: true }
                                         }
                                       ],
                                       staticClass:
                                         "form-control form-control-sm",
-                                      attrs: { type: "number" },
+                                      attrs: { type: "number", min: "0" },
                                       domProps: {
                                         value:
                                           _vm.list.pum_brgy_completed_quarantine
@@ -74633,8 +74933,11 @@ var render = function() {
                                           _vm.$set(
                                             _vm.list,
                                             "pum_brgy_completed_quarantine",
-                                            $event.target.value
+                                            _vm._n($event.target.value)
                                           )
+                                        },
+                                        blur: function($event) {
+                                          return _vm.$forceUpdate()
                                         }
                                       }
                                     })
@@ -74697,149 +75000,217 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("Comorbidity")]
+                                [_vm._v("Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_severe_elderly_wcom,
-                                          expression:
-                                            "list.pui_brgy_severe_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_severe_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(4),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_mild_elderly_wcom,
+                                              expression:
+                                                "list.pui_brgy_mild_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_mild_elderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_brgy_mild_elderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_severe_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_severe_notelderly_wcom,
-                                          expression:
-                                            "list.pui_brgy_severe_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_brgy_severe_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(5),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_severe_elderly_wcom,
+                                              expression:
+                                                "list.pui_brgy_severe_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_severe_elderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_brgy_severe_elderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_severe_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_brgy_mild_elderly_wcom,
-                                          expression:
-                                            "list.pui_brgy_mild_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_mild_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(6),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_mild_elderly_ncom,
+                                              expression:
+                                                "list.pui_brgy_mild_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_mild_elderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_brgy_mild_elderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_mild_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_mild_notelderly_wcom,
-                                          expression:
-                                            "list.pui_brgy_mild_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_mild_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(7),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_severe_elderly_ncom,
+                                              expression:
+                                                "list.pui_brgy_severe_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_severe_elderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_brgy_severe_elderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_mild_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -74849,149 +75220,217 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("W/O Comorbidity")]
+                                [_vm._v("Not Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_severe_elderly_ncom,
-                                          expression:
-                                            "list.pui_brgy_severe_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_severe_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(8),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_mild_notelderly_wcom,
+                                              expression:
+                                                "list.pui_brgy_mild_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_mild_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_brgy_mild_notelderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_severe_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_severe_notelderly_ncom,
-                                          expression:
-                                            "list.pui_brgy_severe_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_brgy_severe_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(9),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_severe_notelderly_wcom,
+                                              expression:
+                                                "list.pui_brgy_severe_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_severe_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_brgy_severe_notelderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_severe_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_brgy_mild_elderly_ncom,
-                                          expression:
-                                            "list.pui_brgy_mild_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_mild_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(10),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_mild_notelderly_ncom,
+                                              expression:
+                                                "list.pui_brgy_mild_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_mild_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_brgy_mild_notelderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_mild_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_mild_notelderly_ncom,
-                                          expression:
-                                            "list.pui_brgy_mild_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_mild_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(11),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_severe_notelderly_ncom,
+                                              expression:
+                                                "list.pui_brgy_severe_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_severe_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_brgy_severe_notelderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_mild_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -75018,7 +75457,7 @@ var render = function() {
                                       ],
                                       staticClass:
                                         "form-control form-control-sm",
-                                      attrs: { type: "number" },
+                                      attrs: { type: "number", readonly: "" },
                                       domProps: { value: _vm.list.pui_brgy },
                                       on: {
                                         input: function($event) {
@@ -75046,149 +75485,215 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("Comorbidity")]
+                                [_vm._v("Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_severe_elderly_wcom,
-                                          expression:
-                                            "list.pui_dis_severe_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_severe_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(12),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_mild_elderly_wcom,
+                                              expression:
+                                                "list.pui_dis_mild_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list.pui_dis_mild_elderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_dis_mild_elderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_dis_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_severe_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_severe_notelderly_wcom,
-                                          expression:
-                                            "list.pui_dis_severe_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_dis_severe_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(13),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_severe_elderly_wcom,
+                                              expression:
+                                                "list.pui_dis_severe_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_severe_elderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_dis_severe_elderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_dis_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_severe_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_dis_mild_elderly_wcom,
-                                          expression:
-                                            "list.pui_dis_mild_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_mild_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(14),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_mild_elderly_ncom,
+                                              expression:
+                                                "list.pui_dis_mild_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list.pui_dis_mild_elderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_dis_mild_elderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_dis_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_mild_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_mild_notelderly_wcom,
-                                          expression:
-                                            "list.pui_dis_mild_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_mild_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(15),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_severe_elderly_ncom,
+                                              expression:
+                                                "list.pui_dis_severe_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_severe_elderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_dis_severe_elderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_dis_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_mild_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -75198,149 +75703,217 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("W/O Comorbidity")]
+                                [_vm._v("Not Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_severe_elderly_ncom,
-                                          expression:
-                                            "list.pui_dis_severe_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_severe_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(16),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_mild_notelderly_wcom,
+                                              expression:
+                                                "list.pui_dis_mild_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_mild_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_dis_mild_notelderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_dis_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_severe_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_severe_notelderly_ncom,
-                                          expression:
-                                            "list.pui_dis_severe_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_dis_severe_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(17),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_severe_notelderly_wcom,
+                                              expression:
+                                                "list.pui_dis_severe_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_severe_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_dis_severe_notelderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_dis_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_severe_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_dis_mild_elderly_ncom,
-                                          expression:
-                                            "list.pui_dis_mild_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_mild_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(18),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_mild_notelderly_ncom,
+                                              expression:
+                                                "list.pui_dis_mild_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_mild_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_dis_mild_notelderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_dis_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_mild_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_mild_notelderly_ncom,
-                                          expression:
-                                            "list.pui_dis_mild_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_mild_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(19),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_severe_notelderly_ncom,
+                                              expression:
+                                                "list.pui_dis_severe_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_severe_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_dis_severe_notelderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_dis_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_mild_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -75350,7 +75923,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("PUI")]
+                                [_vm._v("Discharged PUI")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
@@ -75367,7 +75940,7 @@ var render = function() {
                                       ],
                                       staticClass:
                                         "form-control form-control-sm",
-                                      attrs: { type: "number" },
+                                      attrs: { type: "number", readonly: "" },
                                       domProps: { value: _vm.list.pui_dis },
                                       on: {
                                         input: function($event) {
@@ -75395,149 +75968,215 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("Comorbidity")]
+                                [_vm._v("Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_severe_elderly_wcom,
-                                          expression:
-                                            "list.pui_ref_severe_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_severe_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(20),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_mild_elderly_wcom,
+                                              expression:
+                                                "list.pui_ref_mild_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list.pui_ref_mild_elderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_ref_mild_elderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_ref_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_severe_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_severe_notelderly_wcom,
-                                          expression:
-                                            "list.pui_ref_severe_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_ref_severe_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(21),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_severe_elderly_wcom,
+                                              expression:
+                                                "list.pui_ref_severe_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_severe_elderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_ref_severe_elderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_ref_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_severe_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_ref_mild_elderly_wcom,
-                                          expression:
-                                            "list.pui_ref_mild_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_mild_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(22),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_mild_elderly_ncom,
+                                              expression:
+                                                "list.pui_ref_mild_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list.pui_ref_mild_elderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_ref_mild_elderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_ref_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_mild_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_mild_notelderly_wcom,
-                                          expression:
-                                            "list.pui_ref_mild_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_mild_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(23),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_severe_elderly_ncom,
+                                              expression:
+                                                "list.pui_ref_severe_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_severe_elderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_ref_severe_elderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_ref_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_mild_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -75547,149 +76186,217 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("W/O Comorbidity")]
+                                [_vm._v("Not Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_severe_elderly_ncom,
-                                          expression:
-                                            "list.pui_ref_severe_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_severe_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(24),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_mild_notelderly_wcom,
+                                              expression:
+                                                "list.pui_ref_mild_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_mild_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_ref_mild_notelderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_ref_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_severe_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_severe_notelderly_ncom,
-                                          expression:
-                                            "list.pui_ref_severe_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_ref_severe_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(25),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_severe_notelderly_wcom,
+                                              expression:
+                                                "list.pui_ref_severe_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_severe_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_ref_severe_notelderly_wcom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_ref_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_severe_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_ref_mild_elderly_ncom,
-                                          expression:
-                                            "list.pui_ref_mild_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_mild_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(26),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_mild_notelderly_ncom,
+                                              expression:
+                                                "list.pui_ref_mild_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_mild_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_ref_mild_notelderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_ref_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_mild_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_mild_notelderly_ncom,
-                                          expression:
-                                            "list.pui_ref_mild_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_mild_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(27),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_severe_notelderly_ncom,
+                                              expression:
+                                                "list.pui_ref_severe_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_severe_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: [
+                                              function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.list,
+                                                  "pui_ref_severe_notelderly_ncom",
+                                                  $event.target.value
+                                                )
+                                              },
+                                              function($event) {
+                                                return _vm.compute_ref_pui()
+                                              }
+                                            ]
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_mild_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -75699,7 +76406,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("PUI")]
+                                [_vm._v("Referred PUI")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
@@ -75716,7 +76423,7 @@ var render = function() {
                                       ],
                                       staticClass:
                                         "form-control form-control-sm",
-                                      attrs: { type: "number" },
+                                      attrs: { type: "number", readonly: "" },
                                       domProps: { value: _vm.list.pui_ref },
                                       on: {
                                         input: function($event) {
@@ -75873,22 +76580,318 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-sm-9" }, [
         _c("div", { staticClass: "form-group row" }, [
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _c("small", [_vm._v("Sever Elderly")])
+            _vm._v(
+              "\n                      Mild with Co-morbidity\n                    "
+            )
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _c("small", [_vm._v("Severe Non-Elderly")])
+            _vm._v(
+              "\n                      Severe with Co-morbidity\n                    "
+            )
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _c("small", [_vm._v("Mild Elderly")])
+            _vm._v(
+              "\n                      Mild w/o Co-morbidity\n                    "
+            )
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _c("small", [_vm._v("Mild Non-Elderly")])
+            _vm._v(
+              "\n                      Sever w/o Co-morbidity\n                    "
+            )
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("A")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("B")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("C")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("D")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("E")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("F")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("G")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("H")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("A")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("B")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("C")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("D")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("E")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("F")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("G")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("H")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("A")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("B")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("C")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("D")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("E")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("F")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("G")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("H")]
+      )
     ])
   }
 ]
@@ -76602,149 +77605,197 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("Comorbidity")]
+                                [_vm._v("Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_severe_elderly_wcom,
-                                          expression:
-                                            "list.pui_brgy_severe_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_severe_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(4),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_mild_elderly_wcom,
+                                              expression:
+                                                "list.pui_brgy_mild_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_mild_elderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_brgy_mild_elderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_severe_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_severe_notelderly_wcom,
-                                          expression:
-                                            "list.pui_brgy_severe_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_brgy_severe_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(5),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_severe_elderly_wcom,
+                                              expression:
+                                                "list.pui_brgy_severe_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_severe_elderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_brgy_severe_elderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_severe_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_brgy_mild_elderly_wcom,
-                                          expression:
-                                            "list.pui_brgy_mild_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_mild_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(6),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_mild_elderly_ncom,
+                                              expression:
+                                                "list.pui_brgy_mild_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_mild_elderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_brgy_mild_elderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_mild_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_mild_notelderly_wcom,
-                                          expression:
-                                            "list.pui_brgy_mild_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_mild_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(7),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_severe_elderly_ncom,
+                                              expression:
+                                                "list.pui_brgy_severe_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_severe_elderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_brgy_severe_elderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_mild_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -76754,149 +77805,197 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("W/O Comorbidity")]
+                                [_vm._v("Not Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_severe_elderly_ncom,
-                                          expression:
-                                            "list.pui_brgy_severe_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_severe_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(8),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_mild_notelderly_wcom,
+                                              expression:
+                                                "list.pui_brgy_mild_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_mild_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_brgy_mild_notelderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_severe_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_severe_notelderly_ncom,
-                                          expression:
-                                            "list.pui_brgy_severe_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_brgy_severe_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(9),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_severe_notelderly_wcom,
+                                              expression:
+                                                "list.pui_brgy_severe_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_severe_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_brgy_severe_notelderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_severe_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_brgy_mild_elderly_ncom,
-                                          expression:
-                                            "list.pui_brgy_mild_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_mild_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(10),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_mild_notelderly_ncom,
+                                              expression:
+                                                "list.pui_brgy_mild_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_mild_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_brgy_mild_notelderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_mild_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_brgy_mild_notelderly_ncom,
-                                          expression:
-                                            "list.pui_brgy_mild_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_brgy_mild_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(11),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_brgy_severe_notelderly_ncom,
+                                              expression:
+                                                "list.pui_brgy_severe_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_brgy_severe_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_brgy_severe_notelderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_brgy_mild_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -76951,149 +78050,195 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("Comorbidity")]
+                                [_vm._v("Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_severe_elderly_wcom,
-                                          expression:
-                                            "list.pui_dis_severe_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_severe_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(12),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_mild_elderly_wcom,
+                                              expression:
+                                                "list.pui_dis_mild_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list.pui_dis_mild_elderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_dis_mild_elderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_severe_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_severe_notelderly_wcom,
-                                          expression:
-                                            "list.pui_dis_severe_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_dis_severe_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(13),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_severe_elderly_wcom,
+                                              expression:
+                                                "list.pui_dis_severe_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_severe_elderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_dis_severe_elderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_severe_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_dis_mild_elderly_wcom,
-                                          expression:
-                                            "list.pui_dis_mild_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_mild_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(14),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_mild_elderly_ncom,
+                                              expression:
+                                                "list.pui_dis_mild_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list.pui_dis_mild_elderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_dis_mild_elderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_mild_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_mild_notelderly_wcom,
-                                          expression:
-                                            "list.pui_dis_mild_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_mild_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(15),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_severe_elderly_ncom,
+                                              expression:
+                                                "list.pui_dis_severe_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_severe_elderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_dis_severe_elderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_mild_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -77103,149 +78248,197 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("W/O Comorbidity")]
+                                [_vm._v("Not Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_severe_elderly_ncom,
-                                          expression:
-                                            "list.pui_dis_severe_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_severe_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(16),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_mild_notelderly_wcom,
+                                              expression:
+                                                "list.pui_dis_mild_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_mild_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_dis_mild_notelderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_severe_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_severe_notelderly_ncom,
-                                          expression:
-                                            "list.pui_dis_severe_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_dis_severe_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(17),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_severe_notelderly_wcom,
+                                              expression:
+                                                "list.pui_dis_severe_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_severe_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_dis_severe_notelderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_severe_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_dis_mild_elderly_ncom,
-                                          expression:
-                                            "list.pui_dis_mild_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_mild_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(18),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_mild_notelderly_ncom,
+                                              expression:
+                                                "list.pui_dis_mild_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_mild_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_dis_mild_notelderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_mild_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_dis_mild_notelderly_ncom,
-                                          expression:
-                                            "list.pui_dis_mild_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_dis_mild_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(19),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_dis_severe_notelderly_ncom,
+                                              expression:
+                                                "list.pui_dis_severe_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_dis_severe_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_dis_severe_notelderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_dis_mild_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -77255,7 +78448,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("PUI")]
+                                [_vm._v("Discharged PUI")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
@@ -77300,149 +78493,195 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("Comorbidity")]
+                                [_vm._v("Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_severe_elderly_wcom,
-                                          expression:
-                                            "list.pui_ref_severe_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_severe_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(20),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_mild_elderly_wcom,
+                                              expression:
+                                                "list.pui_ref_mild_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list.pui_ref_mild_elderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_ref_mild_elderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_severe_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_severe_notelderly_wcom,
-                                          expression:
-                                            "list.pui_ref_severe_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_ref_severe_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(21),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_severe_elderly_wcom,
+                                              expression:
+                                                "list.pui_ref_severe_elderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_severe_elderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_ref_severe_elderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_severe_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_ref_mild_elderly_wcom,
-                                          expression:
-                                            "list.pui_ref_mild_elderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_mild_elderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(22),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_mild_elderly_ncom,
+                                              expression:
+                                                "list.pui_ref_mild_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list.pui_ref_mild_elderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_ref_mild_elderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_mild_elderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_mild_notelderly_wcom,
-                                          expression:
-                                            "list.pui_ref_mild_notelderly_wcom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_mild_notelderly_wcom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(23),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_severe_elderly_ncom,
+                                              expression:
+                                                "list.pui_ref_severe_elderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_severe_elderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_ref_severe_elderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_mild_notelderly_wcom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -77452,149 +78691,197 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("W/O Comorbidity")]
+                                [_vm._v("Not Elderly")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
                                 _c("div", { staticClass: "form-group row" }, [
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_severe_elderly_ncom,
-                                          expression:
-                                            "list.pui_ref_severe_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm form-control-block",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_severe_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(24),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_mild_notelderly_wcom,
+                                              expression:
+                                                "list.pui_ref_mild_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_mild_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_ref_mild_notelderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_severe_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_severe_notelderly_ncom,
-                                          expression:
-                                            "list.pui_ref_severe_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list
-                                            .pui_ref_severe_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(25),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_severe_notelderly_wcom,
+                                              expression:
+                                                "list.pui_ref_severe_notelderly_wcom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_severe_notelderly_wcom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_ref_severe_notelderly_wcom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_severe_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list.pui_ref_mild_elderly_ncom,
-                                          expression:
-                                            "list.pui_ref_mild_elderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_mild_elderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(26),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_mild_notelderly_ncom,
+                                              expression:
+                                                "list.pui_ref_mild_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_mild_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_ref_mild_notelderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_mild_elderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-sm-3" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.list
-                                              .pui_ref_mild_notelderly_ncom,
-                                          expression:
-                                            "list.pui_ref_mild_notelderly_ncom"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-control-sm",
-                                      attrs: { type: "number" },
-                                      domProps: {
-                                        value:
-                                          _vm.list.pui_ref_mild_notelderly_ncom
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "input-group input-group-sm mb-3"
                                       },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                                      [
+                                        _vm._m(27),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.list
+                                                  .pui_ref_severe_notelderly_ncom,
+                                              expression:
+                                                "list.pui_ref_severe_notelderly_ncom"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-sm",
+                                          attrs: { type: "number" },
+                                          domProps: {
+                                            value:
+                                              _vm.list
+                                                .pui_ref_severe_notelderly_ncom
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.list,
+                                                "pui_ref_severe_notelderly_ncom",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.list,
-                                            "pui_ref_mild_notelderly_ncom",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
+                                        })
+                                      ]
+                                    )
                                   ])
                                 ])
                               ])
@@ -77604,7 +78891,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-3 col-form-label" },
-                                [_vm._v("PUI")]
+                                [_vm._v("Referred PUI")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9" }, [
@@ -77792,22 +79079,318 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-sm-9" }, [
         _c("div", { staticClass: "form-group row" }, [
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v("Sever Elderly")
+            _vm._v(
+              "\n                      Mild with Co-morbidity\n                    "
+            )
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v("Severe Non-Elderly")
+            _vm._v(
+              "\n                      Severe with Co-morbidity\n                    "
+            )
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v("Mild Elderly")
+            _vm._v(
+              "\n                      Mild w/o Co-morbidity\n                    "
+            )
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v("Mild Non-Elderly")
+            _vm._v(
+              "\n                      Sever w/o Co-morbidity\n                    "
+            )
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("A")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("B")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("C")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("D")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("E")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("F")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("G")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("H")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("A")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("B")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("C")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("D")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("E")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("F")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("G")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("H")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("A")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("B")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("C")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("D")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("E")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("F")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("G")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("H")]
+      )
     ])
   }
 ]

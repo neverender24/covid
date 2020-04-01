@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Tally;
 use App\Municipality;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TallyController extends Controller
 {
@@ -53,6 +54,18 @@ class TallyController extends Controller
     }
 
     public function store(Request $request) {
+        $totalPum = $this->model
+                        ->where('municipality_id', $request->municipality_id)
+                        ->where('barangay_id', $request->barangay_id)
+                        ->sum(DB::raw('pum_brgy-pum_brgy_completed_quarantine-pui_ref'));
+
+        $totalPum = $totalPum + $request->pum_brgy;
+        $totalQuarantine = $request->pum_brgy_completed_quarantine;
+
+        if ($totalPum < $totalQuarantine) {
+            return response()->json(['error' => 'Total Quarantine exceeds total PUM'], 401);
+        }
+
         return$this->model->create($request->all());
     }
 
