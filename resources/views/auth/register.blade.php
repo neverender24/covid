@@ -26,16 +26,41 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="text" class="form-control" name="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label  class="col-md-4 col-form-label text-md-right">{{ __('Municipality') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="municipality_id" required>
+                                    <option value=""></option>
+                                    @foreach ($mun as $item)
+                                        <option value="{{ $item->recid}}">{{ $item->munname}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label  class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="role" required>
+                                    <option value="Admin"></option>
+                                    <option value="Province">Province</option>
+                                    <option value="Municipality">Municipality</option>
+                                </select>
                             </div>
                         </div>
 
@@ -63,7 +88,8 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <a href="{{ route('home') }}" class="btn btn-primary btn-sm btn-danger">Back</a>
+                                <button type="submit" class="btn btn-primary btn-sm">
                                     {{ __('Register') }}
                                 </button>
                             </div>

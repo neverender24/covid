@@ -26,6 +26,10 @@ class TallyController extends Controller
             return $q->with(['municipality'])->get();
         }])->orderBy($sortFields[$column], $dir);
 
+        if (auth()->user()->role != 'Province') {
+            $index= $index->where('municipality_id', auth()->user()->municipality_id);
+        }
+
         $this->searchMunicipality($index, $municipality_id);
         $this->searchBarangay($index, $barangay_id);
         $this->searchDate($index, $date_updated);
@@ -65,6 +69,11 @@ class TallyController extends Controller
         if ($totalPum < $totalQuarantine) {
             return response()->json(['error' => 'Total Quarantine exceeds total PUM'], 401);
         }
+        
+        $checkIfEncoded = $this->model->where('date_updated', $request->date_updated)->count();
+        if ($checkIfEncoded > 0) {
+            return response()->json(['error' => 'You already added data to this date'], 401);
+        }
 
         return$this->model->create($request->all());
     }
@@ -85,5 +94,9 @@ class TallyController extends Controller
         $delete->delete();
 
         return $delete;
+    }
+
+    public function checkBarangayEncoded(Request $request) {
+        return $this->model->where('date_updated', $request->date_updated)->count();
     }
 }

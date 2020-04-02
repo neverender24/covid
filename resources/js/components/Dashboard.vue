@@ -29,6 +29,7 @@
               </div>
               <div class="col-3 filtercol">
                 <select
+                  id="filterMunicipality"
                   class="form-control form-control-sm"
                   v-model="tableData.municipality_id"
                   @change="getBarangays()"
@@ -58,7 +59,8 @@
               </div>
               <div class="col-2 filtercol">
                 <div class="form-group">
-                  <button class="btn btn-primary btn-sm btn-block" @click="getData()">Go</button>
+                  <button class="btn btn-primary btn-sm btn-block" @click="getData()">Filter</button>
+                   <button class="btn btn-primary btn-sm btn-block" @click="getReport()">Report</button>
                 </div>
               </div>
             </div>
@@ -100,7 +102,7 @@
     </div>
     <div class="row">
       <div class="col-6">
-                <line-chart :chart-data="datacollection" :options="options"></line-chart>
+                <!-- <line-chart :chart-data="datacollection" :options="options"></line-chart> -->
       </div>
     </div>
   </div>
@@ -293,6 +295,10 @@ export default {
         .then(response => {
           this.barangays = response.data;
         });
+    },
+    getReport() {
+      var munname = $( "#filterMunicipality option:selected" ).text();
+      window.open("http://192.168.6.26:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fcovid_1&standAlone=true&decorate=no&municipality_id="+this.tableData.municipality_id+"&munname="+munname);
     }
   }
 };

@@ -2541,6 +2541,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2584,6 +2585,17 @@ __webpack_require__.r(__webpack_exports__);
       this.list.pui_brgy = 0;
       this.list.pui_brgy = _.sum([parseInt(this.list.pui_brgy_mild_elderly_wcom) | 0, parseInt(this.list.pui_brgy_mild_elderly_ncom) | 0, parseInt(this.list.pui_brgy_mild_notelderly_wcom) | 0, parseInt(this.list.pui_brgy_mild_notelderly_ncom) | 0, parseInt(this.list.pui_brgy_severe_elderly_wcom) | 0, parseInt(this.list.pui_brgy_severe_elderly_ncom) | 0, parseInt(this.list.pui_brgy_severe_notelderly_wcom) | 0, parseInt(this.list.pui_brgy_severe_notelderly_ncom) | 0]);
     },
+    checkIfBarangayEncoded: function checkIfBarangayEncoded(date) {
+      var _this4 = this;
+
+      axios.post("check-barangay-encoded", {
+        date_updated: this.list.date_updated
+      }).then(function (response) {
+        if (response.data > 0) {
+          _this4.$snotify.error("You already added data to this date", "Error");
+        }
+      });
+    },
     compute_dis_pui: function compute_dis_pui() {
       this.list.pui_dis = 0;
       this.list.pui_dis = _.sum([parseInt(this.list.pui_dis_mild_elderly_wcom) | 0, parseInt(this.list.pui_dis_mild_elderly_ncom) | 0, parseInt(this.list.pui_dis_mild_notelderly_wcom) | 0, parseInt(this.list.pui_dis_mild_notelderly_ncom) | 0, parseInt(this.list.pui_dis_severe_elderly_wcom) | 0, parseInt(this.list.pui_dis_severe_elderly_ncom) | 0, parseInt(this.list.pui_dis_severe_notelderly_wcom) | 0, parseInt(this.list.pui_dis_severe_notelderly_ncom) | 0]);
@@ -2620,6 +2632,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -2938,6 +2952,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }).then(function (response) {
         _this4.barangays = response.data;
       });
+    },
+    getReport: function getReport() {
+      var munname = $("#filterMunicipality option:selected").text();
+      window.open("http://192.168.6.26:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fcovid_1&standAlone=true&decorate=no&municipality_id=" + this.tableData.municipality_id + "&munname=" + munname);
     }
   }
 });
@@ -24455,7 +24473,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-body {\n  padding: 5px !important;\n}\n.modal-header {\n  padding: 5px !important;\n}\n.modal-body {\n  padding: 5px 0 !important;\n}\n.modal-footer {\n  padding: unset !important;\n}\n", ""]);
+exports.push([module.i, "\n.card-body {\r\n  padding: 5px !important;\n}\n.modal-header {\r\n  padding: 5px !important;\n}\n.modal-body {\r\n  padding: 5px 0 !important;\n}\n.modal-footer {\r\n  padding: unset !important;\n}\r\n", ""]);
 
 // exports
 
@@ -24474,7 +24492,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.custom_view {\n  display: none;\n  cursor: pointer;\n}\ntr:hover .custom_view {\n  display: unset;\n}\n.create_new {\n  cursor: pointer;\n  font-weight: bold;\n}\n.create_new:hover {\n  text-decoration: underline;\n}\n.filtercol{\n    padding-right: 5px !important;\n    padding-left: 5px !important;\n}\n", ""]);
+exports.push([module.i, "\n.custom_view {\r\n  display: none;\r\n  cursor: pointer;\n}\ntr:hover .custom_view {\r\n  display: unset;\n}\n.create_new {\r\n  cursor: pointer;\r\n  font-weight: bold;\n}\n.create_new:hover {\r\n  text-decoration: underline;\n}\n.filtercol{\r\n    padding-right: 5px !important;\r\n    padding-left: 5px !important;\n}\r\n", ""]);
 
 // exports
 
@@ -24493,7 +24511,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-body {\n    padding: 5px !important;\n}\n.modal-header {\n    padding: 5px !important;\n}\n.modal-body{\n    padding: 5px 0 !important;\n}\n.modal-footer {\n    padding: unset !important;\n}\n", ""]);
+exports.push([module.i, "\n.card-body {\r\n    padding: 5px !important;\n}\n.modal-header {\r\n    padding: 5px !important;\n}\n.modal-body{\r\n    padding: 5px 0 !important;\n}\n.modal-footer {\r\n    padding: unset !important;\n}\r\n", ""]);
 
 // exports
 
@@ -74817,16 +74835,23 @@ var render = function() {
                               attrs: { type: "date", required: "" },
                               domProps: { value: _vm.list.date_updated },
                               on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                                input: [
+                                  function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.list,
+                                      "date_updated",
+                                      $event.target.value
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.checkIfBarangayEncoded(
+                                      _vm.list.date_updated
+                                    )
                                   }
-                                  _vm.$set(
-                                    _vm.list,
-                                    "date_updated",
-                                    $event.target.value
-                                  )
-                                }
+                                ]
                               }
                             })
                           ])
@@ -77022,7 +77047,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control form-control-sm",
-                          attrs: { required: "" },
+                          attrs: { id: "filterMunicipality", required: "" },
                           on: {
                             change: [
                               function($event) {
@@ -77124,7 +77149,20 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Go")]
+                          [_vm._v("Filter")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary btn-sm btn-block",
+                            on: {
+                              click: function($event) {
+                                return _vm.getReport()
+                              }
+                            }
+                          },
+                          [_vm._v("Report")]
                         )
                       ])
                     ])
@@ -77227,21 +77265,19 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-6" },
-        [
-          _c("line-chart", {
-            attrs: { "chart-data": _vm.datacollection, options: _vm.options }
-          })
-        ],
-        1
-      )
-    ])
+    _vm._m(0)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-6" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -93793,8 +93829,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/covid/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/covid/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\xampp\htdocs\covid\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\xampp\htdocs\covid\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

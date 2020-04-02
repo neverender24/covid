@@ -67,6 +67,7 @@
                           class="form-control form-control-sm"
                           v-model="list.date_updated"
                           required
+                          @input="checkIfBarangayEncoded(list.date_updated)"
                         />
                       </label>
                     </div>
@@ -665,6 +666,15 @@ export default {
             parseInt(this.list.pui_brgy_severe_notelderly_wcom) | 0,
             parseInt(this.list.pui_brgy_severe_notelderly_ncom) | 0,
             ])
+    },
+    checkIfBarangayEncoded(date) {
+        axios
+        .post("check-barangay-encoded", { date_updated: this.list.date_updated })
+        .then(response => {
+          if (response.data > 0) {
+            this.$snotify.error("You already added data to this date", "Error");
+          }
+        });
     },
     compute_dis_pui() {
         this.list.pui_dis = 0
