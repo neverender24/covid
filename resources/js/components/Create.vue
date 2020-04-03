@@ -669,7 +669,11 @@ export default {
     },
     checkIfBarangayEncoded(date) {
         axios
-        .post("check-barangay-encoded", { date_updated: this.list.date_updated })
+        .post("check-barangay-encoded", {
+          date_updated: this.list.date_updated,
+          municipality_id: this.list.municipality_id,
+          barangay_id: this.list.barangay_id 
+        })
         .then(response => {
           if (response.data > 0) {
             this.$snotify.error("You already added data to this date", "Error");

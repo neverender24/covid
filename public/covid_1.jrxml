@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="covid_1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b74670f5-7b1f-4764-9a16-70d27f9003bb">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Covid"/>
-	<property name="com.jaspersoft.studio.data.sql.tables" value="dGFsbGllcyAsMTUsMTUsNTgwMjczNjAtY2EwOS00Mzk3LThjM2QtZjhjNWZhODBjYWQ0Ow=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="covid.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://192.168.6.26:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/covid_1_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/covid_1"/>
 	<parameter name="municipality_id" class="java.lang.Integer"/>
 	<parameter name="munname" class="java.lang.String"/>
 	<queryString>

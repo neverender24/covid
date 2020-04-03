@@ -70,7 +70,10 @@ class TallyController extends Controller
             return response()->json(['error' => 'Total Quarantine exceeds total PUM'], 401);
         }
         
-        $checkIfEncoded = $this->model->where('date_updated', $request->date_updated)->count();
+        $checkIfEncoded = $this->model->where('date_updated', $request->date_updated)
+                            ->where('municipality_id',$request->municipality_id )
+                            ->where('barangay_id',$request->barangay_id )
+                            ->count();
         if ($checkIfEncoded > 0) {
             return response()->json(['error' => 'You already added data to this date'], 401);
         }
@@ -97,6 +100,9 @@ class TallyController extends Controller
     }
 
     public function checkBarangayEncoded(Request $request) {
-        return $this->model->where('date_updated', $request->date_updated)->count();
+        return $this->model->where('date_updated', $request->date_updated)
+                    ->where('municipality_id',$request->municipality_id )
+                    ->where('barangay_id',$request->barangay_id )
+                    ->count();
     }
 }
