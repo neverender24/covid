@@ -10,7 +10,21 @@
 	<parameter name="municipality_id" class="java.lang.Integer"/>
 	<parameter name="munname" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT date( date_updated) AS date_updated,
+		<![CDATA[SELECT t.date_updated,
+       t.remaining_pum,
+       	t.pum,
+		t.completed_quarantine,
+		t.referred_pui,
+		t.remaining_pum,
+		t.pui,
+		t.pui_dis,
+		t.pui_ref,
+		t.remaining_pui,
+       @running_total:=@running_total + t.remaining_pum AS cumulative_sum,
+       @running_total_pui:=@running_total_pui + t.remaining_pui AS cumulative_sum_pui
+FROM
+( SELECT 
+    date( date_updated) AS date_updated,
 	sum( pum_brgy) AS pum,
 	sum( pum_brgy_completed_quarantine) AS completed_quarantine,
 	sum( pum_brgy_referred_pui) AS referred_pui,
@@ -19,15 +33,17 @@
 	sum( pui_dis) AS pui_dis,
 	sum( pui_ref) AS pui_ref,
 	sum( pui_brgy - pui_dis) AS remaining_pui
-FROM tallies
-WHERE 
-municipality_id = $P{municipality_id} 
-GROUP BY date_updated
-ORDER BY date_updated ASC]]>
+  FROM tallies
+  GROUP BY date_updated ) t
+JOIN (SELECT @running_total:=0, @running_total_pui:=0) r
+ORDER BY t.date_updated]]>
 	</queryString>
 	<field name="date_updated" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.label" value="date_updated"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="tallies"/>
+	</field>
+	<field name="remaining_pum" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="remaining_pum"/>
 	</field>
 	<field name="pum" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="pum"/>
@@ -38,7 +54,7 @@ ORDER BY date_updated ASC]]>
 	<field name="referred_pui" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="referred_pui"/>
 	</field>
-	<field name="remaining_pum" class="java.math.BigDecimal">
+	<field name="COLUMN_6" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="remaining_pum"/>
 	</field>
 	<field name="pui" class="java.math.BigDecimal">
@@ -52,6 +68,12 @@ ORDER BY date_updated ASC]]>
 	</field>
 	<field name="remaining_pui" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="remaining_pui"/>
+	</field>
+	<field name="cumulative_sum" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="cumulative_sum"/>
+	</field>
+	<field name="cumulative_sum_pui" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="cumulative_sum_pui"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -211,10 +233,10 @@ ORDER BY date_updated ASC]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="28" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
 			<textField>
-				<reportElement x="0" y="0" width="67" height="28" uuid="e8c96986-23d2-4935-a9a7-f8ce215825e1">
+				<reportElement x="0" y="0" width="67" height="41" uuid="e8c96986-23d2-4935-a9a7-f8ce215825e1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="727a043a-5a16-47ee-98e0-fc7dc45b0d13"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -228,7 +250,7 @@ ORDER BY date_updated ASC]]>
 				<textFieldExpression><![CDATA[$F{date_updated}.toLocalDate()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="67" y="0" width="61" height="28" uuid="1bdca542-6c28-4d1c-b6e6-b59e6125860d">
+				<reportElement x="67" y="0" width="61" height="41" uuid="1bdca542-6c28-4d1c-b6e6-b59e6125860d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a3c7d5d-45a1-4166-86d3-cc94b18755cd"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -242,7 +264,7 @@ ORDER BY date_updated ASC]]>
 				<textFieldExpression><![CDATA[$F{pum}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="128" y="0" width="61" height="28" uuid="88541ce4-ecdd-4af8-8c9f-ac5ecb18f0f4">
+				<reportElement x="128" y="0" width="61" height="41" uuid="88541ce4-ecdd-4af8-8c9f-ac5ecb18f0f4">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5465e54a-cb17-46bd-ae3f-39e13d9c3a13"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -256,7 +278,7 @@ ORDER BY date_updated ASC]]>
 				<textFieldExpression><![CDATA[$F{completed_quarantine}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="189" y="0" width="61" height="28" uuid="af7ef039-b70b-4a5a-93a5-a9eb6f97f143">
+				<reportElement x="189" y="0" width="61" height="41" uuid="af7ef039-b70b-4a5a-93a5-a9eb6f97f143">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="58224207-a3d9-4799-b1c9-9ffc33198c6d"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -270,7 +292,7 @@ ORDER BY date_updated ASC]]>
 				<textFieldExpression><![CDATA[$F{referred_pui}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="250" y="0" width="61" height="28" uuid="fedf81a6-5395-40ae-b45a-a19c6dea4d7d">
+				<reportElement x="250" y="0" width="61" height="41" uuid="fedf81a6-5395-40ae-b45a-a19c6dea4d7d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ec80deff-dff8-4243-8745-18369813aec7"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -281,10 +303,10 @@ ORDER BY date_updated ASC]]>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{remaining_pum}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cumulative_sum}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="311" y="0" width="61" height="28" uuid="528e1708-1077-44de-8dcf-a176aec841db">
+				<reportElement x="311" y="0" width="61" height="41" uuid="528e1708-1077-44de-8dcf-a176aec841db">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="17d55b6d-36e2-48d8-a470-886e9460ae8a"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -298,7 +320,7 @@ ORDER BY date_updated ASC]]>
 				<textFieldExpression><![CDATA[$F{pui}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="372" y="0" width="61" height="28" uuid="77405639-84fd-40f1-a196-ca5d166fedf9">
+				<reportElement x="372" y="0" width="61" height="41" uuid="77405639-84fd-40f1-a196-ca5d166fedf9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e94c742b-a31d-4700-bf78-db753a5ab831"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -312,7 +334,7 @@ ORDER BY date_updated ASC]]>
 				<textFieldExpression><![CDATA[$F{pui_dis}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="433" y="0" width="61" height="28" uuid="afed57be-bfc7-4020-a9e7-2dc0454a4f68">
+				<reportElement x="433" y="0" width="61" height="41" uuid="afed57be-bfc7-4020-a9e7-2dc0454a4f68">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c0715b16-5601-41e1-81ef-30bd91704ddb"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -323,10 +345,10 @@ ORDER BY date_updated ASC]]>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{remaining_pui}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cumulative_sum_pui}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="494" y="0" width="61" height="28" uuid="ff7293e5-840a-4aab-a53d-825f3043eeff">
+				<reportElement x="494" y="0" width="61" height="41" uuid="ff7293e5-840a-4aab-a53d-825f3043eeff">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="531f061f-12f7-4da9-ac2e-7916f1c75b33"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
