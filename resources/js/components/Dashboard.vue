@@ -518,7 +518,7 @@ export default {
         printChart() {
             var munname = $("#filterMunicipality option:selected").text();
             window.open(
-                "http://122.54.19.172:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&decorate=no&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fprovince_chart&standAlone=true"
+                "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&decorate=no&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fprovince_chart&standAlone=true"
             );
         }
     }
