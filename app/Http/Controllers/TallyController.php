@@ -82,7 +82,9 @@ class TallyController extends Controller
     }
 
     public function edit($id) {
-        return $this->model->where('recid', $id)->first();
+        return $this->model->with(['barangay' => function($q){
+            return $q->with(['municipality'])->get();
+        }])->where('recid', $id)->first();
     }
 
     public function update(Request $request, $id) {

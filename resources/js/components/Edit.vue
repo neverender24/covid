@@ -597,7 +597,7 @@ export default {
   data() {
     return {
       municipalities: [],
-      barangays: []
+      barangays: [],
     };
   },
   mounted() {
@@ -605,6 +605,16 @@ export default {
       this.municipalities = response.data;
     });
   },
+  watch: {
+        "list.municipality_id": function() {
+            var self = this;
+           axios
+        .post("get-barangays", { municipality_id: this.list.municipality_id })
+        .then(response => {
+          this.barangays = response.data;
+        });
+        }
+    },
   methods: {
     getBarangays() {
       axios

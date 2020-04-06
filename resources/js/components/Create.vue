@@ -645,6 +645,11 @@ export default {
         });
     },
     save() {
+      
+      if (this.municipality_id == '' || this.barangay_id == '' || this.date_updated == '') {
+        return false
+      }
+
       axios.post("tally", this.list).then(response => {
         this.$snotify.success("Save successfully", "Done");
         this.list = {};
