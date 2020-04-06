@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'COVID-19 Reports') }}</title>
+    <title>EOC Dashboard</title>
 
     <!-- Scripts -->
 

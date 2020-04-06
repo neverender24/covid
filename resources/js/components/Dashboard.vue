@@ -11,7 +11,7 @@
             Records
             <button
               class="btn btn-success btn-sm float-right"
-              @click="filter= !filter"
+              @click="toggleFilter()"
             >Filter</button>
             <button class="btn btn-primary btn-sm float-right mr-1" @click="create_record()">Add</button>
             <div class="dropdown float-right mr-1">
@@ -551,6 +551,13 @@ export default {
       window.open(
         "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&decorate=no&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fprovince_chart&standAlone=true&decorate=no"
       );
+    },
+    toggleFilter() {
+        this.filter= !this.filter
+        this.tableData.municipality_id = ''
+        this.tableData.barangay_id = ''
+        this.tableData.date_updated = ''
+        this.getData()
     }
   }
 };
