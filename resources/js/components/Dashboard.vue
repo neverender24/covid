@@ -5,7 +5,7 @@
       <edit :list="editData" @refresh="getData()"></edit>
     </div>
     <div class="row">
-      <div class="col-8">
+      <div class="col-12">
         <div class="card">
           <div class="card-header">
             Records
@@ -14,6 +14,19 @@
               @click="filter= !filter"
             >Filter</button>
             <button class="btn btn-primary btn-sm float-right mr-1" @click="create_record()">Add</button>
+            <div class="dropdown float-right mr-1">
+              <button
+                class="btn btn-secondary dropdown-toggle btn-sm"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >Printables</button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" @click="printChart()">Action</a>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <div v-if="filter" class="row mb-2">
@@ -64,7 +77,7 @@
                     class="btn btn-primary btn-sm btn-block"
                     @click="municipalityReport()"
                   >Report</button>
-                  <input type="checkbox" @click="toggleReport()">Province
+                  <input type="checkbox" @click="toggleReport()" />Province
                   <div class="row" v-if="province==false">
                     <button class="btn btn-primary btn-sm btn-block" @click="getMunDaily()">Daily</button>
                     <button class="btn btn-primary btn-sm btn-block" @click="getMunBrgy()">Per Brgy</button>
@@ -87,6 +100,12 @@
                   <td>{{ item.date_updated }}</td>
                   <td>{{ item.barangay.municipality.munname }}</td>
                   <td>{{ item.barangay.brgyname }}</td>
+                  <td>{{ item.pum_brgy }}</td>
+                  <td>{{ item.pum_brgy_completed_quarantine }}</td>
+                  <td>{{ item.pum_brgy_referred_pui }}</td>
+                  <td>{{ item.pui_brgy }}</td>
+                  <td>{{ item.pui_ref }}</td>
+                  <td>{{ item.pui_dis }}</td>
                   <td>
                     <span class="custom_view" @click="edit(item.recid)">Edit</span>
                   </td>
@@ -104,18 +123,8 @@
           </div>
         </div>
       </div>
-      <div class="col-4">
-        <div class="card mb-3">
-          <div class="card-header">Summary</div>
-          <Summary></Summary>
-        </div>
-        <div class="card mb-3">
-          <div class="card-header">Printables</div>
-          <button class="btn btn-info btn-sm" @click="printChart()">Print Provincial Chart</button>
-        </div>
-      </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-6">
         <bar-chart :chart-data="datacollection" :options="options" :height="200"></bar-chart>
       </div>
@@ -130,7 +139,7 @@
       <div class="col-6">
         <line-chart :chart-data="datacollectionDailyPUI" :options="optionsDaily" :height="200"></line-chart>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -177,10 +186,16 @@ export default {
   data() {
     let sortOrders = {};
     let columns = [
-      { width: "30%", label: "Date", name: "date" },
-      { width: "30%", label: "Municipality", name: "municipality" },
-      { width: "30%", label: "Barangay", name: "barangay" },
-      { width: "10%", label: "", name: "action" }
+      { width: "20%", label: "Date", name: "date" },
+      { width: "20%", label: "Municipality", name: "municipality" },
+      { width: "20%", label: "Barangay", name: "barangay" },
+      { width: "6%", label: "PUM", name: "PUM" },
+      { width: "6%", label: "PUM CQ", name: "PUM CQ" },
+      { width: "6%", label: "PUM Ref", name: "PUM Ref" },
+      { width: "6%", label: "PUI", name: "PUI" },
+      { width: "6%", label: "PUI Ref", name: "PUI Ref" },
+      { width: "6%", label: "PUI Dis", name: "PUI Dis" },
+      { width: "6%", label: "", name: "action" }
     ];
     columns.forEach(column => {
       sortOrders[column.name] = -1;
@@ -192,7 +207,7 @@ export default {
       sortOrders: sortOrders,
       tableData: {
         draw: 0,
-        length: 5,
+        length: 10,
         search: "",
         column: 0,
         dir: "desc",
@@ -479,8 +494,6 @@ export default {
       });
     },
     getBarangays() {
-    
-        
       axios
         .post("get-barangays", {
           municipality_id: this.tableData.municipality_id
@@ -490,16 +503,16 @@ export default {
         });
     },
     toggleReport() {
-        this.province = !this.province
+      this.province = !this.province;
     },
     provMun() {
-    var munname = $("#filterMunicipality option:selected").text();
+      var munname = $("#filterMunicipality option:selected").text();
       window.open(
         "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fprovince_mun&standAlone=true&decorate=no"
       );
     },
     provDaily() {
-    var munname = $("#filterMunicipality option:selected").text();
+      var munname = $("#filterMunicipality option:selected").text();
       window.open(
         "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fprov_mun_daily&standAlone=true&decorate=no"
       );
@@ -508,11 +521,11 @@ export default {
       this.munReport = !this.munReport;
     },
     getMunDaily() {
-        if (this.tableData.municipality_id == '') {
-            alert('select municipality')
-            return false
-        }
-    var munname = $("#filterMunicipality option:selected").text();
+      if (this.tableData.municipality_id == "") {
+        alert("select municipality");
+        return false;
+      }
+      var munname = $("#filterMunicipality option:selected").text();
       window.open(
         "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fcovid_1&standAlone=true&decorate=no&municipality_id=" +
           this.tableData.municipality_id +
@@ -521,10 +534,10 @@ export default {
       );
     },
     getMunBrgy() {
-        if (this.tableData.municipality_id == '') {
-            alert('select municipality')
-            return false
-        }
+      if (this.tableData.municipality_id == "") {
+        alert("select municipality");
+        return false;
+      }
       var munname = $("#filterMunicipality option:selected").text();
       window.open(
         "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fmun_brgy&standAlone=true&decorate=no&municipality_id=" +
