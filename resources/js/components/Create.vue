@@ -27,9 +27,9 @@
                         Municipality
                         <select
                           class="form-control form-control-sm"
-                          v-model="list.municipality_id"
+                          v-model.trim="$v.list.municipality_id.$error"
+                          :class="{ 'is-invalid': $v.list.municipality_id.$error }"
                           @change="getBarangays()"
-                          required
                         >
                           <option
                             v-for="item in municipalities"
@@ -46,8 +46,8 @@
                         Barangay
                         <select
                           class="form-control form-control-sm"
-                          v-model="list.barangay_id"
-                          required
+                          v-model.trim="$v.list.barangay_id.$error"
+                           :class="{ 'is-invalid': $v.list.barangay_id.$error }"
                         >
                           <option
                             v-for="item in barangays"
@@ -65,8 +65,8 @@
                         <input
                           type="date"
                           class="form-control form-control-sm"
-                          v-model="list.date_updated"
-                          required
+                          v-model.trim="$v.list.date_updated.$error"
+                           :class="{ 'is-invalid': $v.list.date_updated.$error }"
                           @input="checkIfBarangayEncoded(list.date_updated)"
                         />
                       </label>
@@ -621,6 +621,8 @@
 </style>
  
 <script>
+import { required } from "vuelidate/lib/validators";
+
 export default {
   data() {
     return {
@@ -645,7 +647,11 @@ export default {
         });
     },
     save() {
-      
+      this.$v.$touch();
+            if (this.$v.$invalid) {
+                return false;
+            }
+
       if (this.municipality_id == '' || this.barangay_id == '' || this.date_updated == '') {
         return false
       }
@@ -711,6 +717,20 @@ export default {
             parseInt(this.list.pui_ref_severe_notelderly_ncom) | 0,
             ])
     }
-  }
+  },
+    validations: {
+        list: {
+            municipality_id: {
+                required
+            },
+            barangay_id: {
+                required
+            }
+            ,
+            date_updated: {
+                required
+            }
+        }
+    }
 };
 </script>

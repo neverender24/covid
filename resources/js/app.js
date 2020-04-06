@@ -1,7 +1,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+import Vuelidate from 'vuelidate';
 /**
  * Vue-snotify config
  */
@@ -17,6 +17,7 @@ const options = {
 }
 Vue.use(Snotify, options)
 //end snotify
+Vue.use(Vuelidate)
 
 import Dashboard from "./components/Dashboard";
 
