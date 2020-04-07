@@ -3,16 +3,15 @@
     <div class="row justify-content-center">
       <create @refresh="getData()"></create>
       <edit :list="editData" @refresh="getData()"></edit>
+      <report-mun :municipalities="municipalities"></report-mun>
+      <report-prov></report-prov>
     </div>
     <div class="row">
       <div class="col-12">
         <div class="card">
           <div class="card-header">
             Records
-            <button
-              class="btn btn-success btn-sm float-right"
-              @click="toggleFilter()"
-            >Filter</button>
+            <button class="btn btn-success btn-sm float-right" @click="toggleFilter()">Filter</button>
             <button class="btn btn-primary btn-sm float-right mr-1" @click="create_record()">Add</button>
             <div class="dropdown float-right mr-1">
               <button
@@ -22,9 +21,11 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-              >Printables</button>
+              >Reports</button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#" @click="printChart()">Action</a>
+                <a class="dropdown-item" href="#" @click="reportProvince()">Province</a>
+                <a class="dropdown-item" href="#" @click="reportMunicipality()">Municipality</a>
+                <a class="dropdown-item" href="#" @click="reportProvince()">Barangay</a>
               </div>
             </div>
           </div>
@@ -73,19 +74,6 @@
               <div class="col-2 filtercol">
                 <div class="form-group">
                   <button class="btn btn-primary btn-sm btn-block" @click="getData()">Filter</button>
-                  <button
-                    class="btn btn-primary btn-sm btn-block"
-                    @click="municipalityReport()"
-                  >Report</button>
-                  <input type="checkbox" @click="toggleReport()" />Province
-                  <div class="row" v-if="province==false">
-                    <button class="btn btn-primary btn-sm btn-block" @click="getMunDaily()">Daily</button>
-                    <button class="btn btn-primary btn-sm btn-block" @click="getMunBrgy()">Per Brgy</button>
-                  </div>
-                  <div class="row" v-if="province">
-                    <button class="btn btn-primary btn-sm btn-block" @click="provDaily()">Daily</button>
-                    <button class="btn btn-primary btn-sm btn-block" @click="provMun()">Per Mun</button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -171,6 +159,8 @@ import Pagination from "../helpers/pagination";
 
 import Summary from "./Summary";
 import Create from "./Create";
+import ReportMun from "./ReportsMun"
+import ReportProv from "./ReportsProv"
 import Edit from "./Edit";
 
 export default {
@@ -181,7 +171,9 @@ export default {
     BarChart,
     Datatable,
     Pagination,
-    Edit
+    Edit,
+    ReportMun,
+    ReportProv
   },
   data() {
     let sortOrders = {};
@@ -296,9 +288,6 @@ export default {
           data: []
         }
       ],
-      reportProv: false,
-      reportMun: false,
-      province: false
     };
   },
   async mounted() {
@@ -483,6 +472,14 @@ export default {
       });
     },
 
+    reportProvince() {
+        $("#reportProvModal").modal("show");
+    },
+
+    reportMunicipality() {
+        $("#reportMunModal").modal("show");
+    },
+
     create_record() {
       $("#createModal").modal("show");
     },
@@ -502,62 +499,12 @@ export default {
           this.barangays = response.data;
         });
     },
-    toggleReport() {
-      this.province = !this.province;
-    },
-    provMun() {
-      var munname = $("#filterMunicipality option:selected").text();
-      window.open(
-        "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fprovince_mun&standAlone=true&decorate=no"
-      );
-    },
-    provDaily() {
-      var munname = $("#filterMunicipality option:selected").text();
-      window.open(
-        "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fprov_mun_daily&standAlone=true&decorate=no"
-      );
-    },
-    municipalityReport() {
-      this.munReport = !this.munReport;
-    },
-    getMunDaily() {
-      if (this.tableData.municipality_id == "") {
-        alert("select municipality");
-        return false;
-      }
-      var munname = $("#filterMunicipality option:selected").text();
-      window.open(
-        "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fcovid_1&standAlone=true&decorate=no&municipality_id=" +
-          this.tableData.municipality_id +
-          "&munname=" +
-          munname
-      );
-    },
-    getMunBrgy() {
-      if (this.tableData.municipality_id == "") {
-        alert("select municipality");
-        return false;
-      }
-      var munname = $("#filterMunicipality option:selected").text();
-      window.open(
-        "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fmun_brgy&standAlone=true&decorate=no&municipality_id=" +
-          this.tableData.municipality_id +
-          "&munname=" +
-          munname
-      );
-    },
-    printChart() {
-      var munname = $("#filterMunicipality option:selected").text();
-      window.open(
-        "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&decorate=no&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fprovince_chart&standAlone=true&decorate=no"
-      );
-    },
     toggleFilter() {
-        this.filter= !this.filter
-        this.tableData.municipality_id = ''
-        this.tableData.barangay_id = ''
-        this.tableData.date_updated = ''
-        this.getData()
+      this.filter = !this.filter;
+      this.tableData.municipality_id = "";
+      this.tableData.barangay_id = "";
+      this.tableData.date_updated = "";
+      this.getData();
     }
   }
 };
