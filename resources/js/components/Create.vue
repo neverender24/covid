@@ -27,8 +27,8 @@
                         Municipality
                         <select
                           class="form-control form-control-sm"
-                          v-model.trim="$v.list.municipality_id.$error"
-                          :class="{ 'is-invalid': $v.list.municipality_id.$error }"
+                          v-model="list.municipality_id"
+
                           @change="getBarangays()"
                         >
                           <option
@@ -46,8 +46,8 @@
                         Barangay
                         <select
                           class="form-control form-control-sm"
-                          v-model.trim="$v.list.barangay_id.$error"
-                           :class="{ 'is-invalid': $v.list.barangay_id.$error }"
+                          v-model="list.barangay_id"
+
                         >
                           <option
                             v-for="item in barangays"
@@ -65,8 +65,7 @@
                         <input
                           type="date"
                           class="form-control form-control-sm"
-                          v-model.trim="$v.list.date_updated.$error"
-                           :class="{ 'is-invalid': $v.list.date_updated.$error }"
+                          v-model="list.date_updated"
                           @input="checkIfBarangayEncoded(list.date_updated)"
                         />
                       </label>
