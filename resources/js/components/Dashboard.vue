@@ -3,8 +3,9 @@
     <div class="row justify-content-center">
       <create @refresh="getData()"></create>
       <edit :list="editData" @refresh="getData()"></edit>
-      <report-mun :municipalities="municipalities"></report-mun>
       <report-prov></report-prov>
+      <report-mun :municipalities="municipalities"></report-mun>
+      <report-brgy :municipalities="municipalities"></report-brgy>
     </div>
     <div class="row">
       <div class="col-12">
@@ -25,7 +26,7 @@
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#" @click="reportProvince()">Province</a>
                 <a class="dropdown-item" href="#" @click="reportMunicipality()">Municipality</a>
-                <a class="dropdown-item" href="#" @click="reportProvince()">Barangay</a>
+                <a class="dropdown-item" href="#" @click="reportBrgy()">Barangay</a>
               </div>
             </div>
           </div>
@@ -161,6 +162,7 @@ import Summary from "./Summary";
 import Create from "./Create";
 import ReportMun from "./ReportsMun"
 import ReportProv from "./ReportsProv"
+import ReportBrgy from "./ReportsBrgy"
 import Edit from "./Edit";
 
 export default {
@@ -173,7 +175,8 @@ export default {
     Pagination,
     Edit,
     ReportMun,
-    ReportProv
+    ReportProv,
+    ReportBrgy,
   },
   data() {
     let sortOrders = {};
@@ -478,6 +481,10 @@ export default {
 
     reportMunicipality() {
         $("#reportMunModal").modal("show");
+    },
+
+    reportBrgy() {
+        $("#reportBrgyModal").modal("show");
     },
 
     create_record() {
