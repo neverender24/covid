@@ -21,7 +21,7 @@
             <label class="col-3 col-form-label">Municipality</label>
             <div class="col-3">
               <select
-                id="filterMunicipality"
+                id="munName"
                 class="form-control form-control-sm"
                 v-model="municipality_id" 
                 @change="getBarangays()"
@@ -49,6 +49,7 @@
             </div>
             <div class="col-3">
               <button class="btn btn-success btn-sm" @click="daily()">Daily</button>
+              <button class="btn btn-success btn-sm" @click="chart()">Chart</button>
             </div>
           </div>
         </div>
@@ -91,14 +92,29 @@ export default {
         alert("select municipality");
         return false;
       }
-      var munname = $("#filterMunicipality option:selected").text();
+      var munname = $("#munName option:selected").text();
       var brgyname = $("#brgyName option:selected").text();
       window.open(
         "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fbrgy_daily&standAlone=true&decorate=no&municipality_id=" +
           this.municipality_id +
           "&munname=" + munname + 
           "&barangay_id=" + this.barangay_id +
-          "&munname=" + brgyname
+          "&brgyname=" + brgyname
+      );
+    },
+    chart() {
+      if (this.municipality_id == "") {
+        alert("select municipality");
+        return false;
+      }
+      var munname = $("#munName option:selected").text();
+      var brgyname = $("#brgyName option:selected").text();
+      window.open(
+        "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&_flowId=viewReportFlow&_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fbrgy_chart&standAlone=true&decorate=no&municipality_id=" +
+          this.municipality_id +
+          "&munname=" + munname + 
+          "&barangay_id=" + this.barangay_id +
+          "&brgyname=" + brgyname
       );
     },
     getBarangays() {
