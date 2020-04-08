@@ -20,10 +20,11 @@ Vue.use(Snotify, options)
 Vue.use(Vuelidate)
 
 import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
 
 const app = new Vue({
     el: '#app',
-    components:{ Dashboard }
+    components:{ Dashboard, Home }
 });
 
  
