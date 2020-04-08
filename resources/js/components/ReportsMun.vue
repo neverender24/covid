@@ -35,6 +35,7 @@
             <div class="col-5">
               <button class="btn btn-success btn-sm" @click="daily()">Daily</button>
               <button class="btn btn-success btn-sm" @click="perBrgy()">Per Barangay</button>
+              <button class="btn btn-success btn-sm" @click="charts()">Charts</button>
             </div>
           </div>
         </div>
@@ -96,6 +97,15 @@ export default {
           munname
       );
     },
+    charts() {
+      var munname = $("#filterMunicipality option:selected").text();
+      window.open(
+        "http://122.54.19.171:8080/jasperserver/flow.html?pp=u%3DJamshasadid%7Cr%3DManager%7Co%3DEMEA,Sales%7Cpa1%3DSweden&decorate=no&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2Fmunicipality_chart&standAlone=true&decorate=no&municipality_id=" +
+          this.municipality_id +
+          "&munname=" +
+          munname
+      );
+    }
   }
 };
 </script>
