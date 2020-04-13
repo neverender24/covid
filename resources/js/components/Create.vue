@@ -636,6 +636,17 @@
                             />
                           </div>
                         </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">PUI Probable</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model.number="list.pui_probable"
+                              min="0"
+                            />
+                          </div>
+                        </div>
                       </div>
                       <div class="col-6">
                         <div class="form-group row">
