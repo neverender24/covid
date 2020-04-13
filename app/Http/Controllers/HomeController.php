@@ -19,6 +19,10 @@ class HomeController extends Controller
         $this->model = $model;
     }
 
+    public function getUserRole() {
+        return auth()->user()->role;
+    }
+
     /**
      * Show the application dashboard.
      *

@@ -88,6 +88,7 @@ class TallyController extends Controller
     }
 
     public function update(Request $request, $id) {
+
         $edit = $this->model->findOrFail($id);
         $edit->update($request->all());
         

@@ -2544,8 +2544,94 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['userRole'],
   data: function data() {
     return {
       list: {},
@@ -2580,7 +2666,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      if (this.municipality_id == '' || this.barangay_id == '' || this.date_updated == '') {
+      if (this.municipality_id == "" || this.barangay_id == "" || this.date_updated == "") {
         return false;
       }
 
@@ -2975,7 +3061,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         backgroundColor: ["rgba(255, 99, 132, 0.2)"],
         borderWidth: 1,
         data: []
-      }]
+      }],
+      userRole: ''
     };
   },
   mounted: function mounted() {
@@ -2988,6 +3075,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               _this.getData();
+
+              _this.getUser();
 
               axios.get("get-municipalities").then(function (response) {
                 _this.municipalities = response.data;
@@ -3008,7 +3097,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               _this.processDataDailyPUI();
 
-            case 7:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -3222,6 +3311,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.tableData.barangay_id = "";
       this.tableData.date_updated = "";
       this.getData();
+    },
+    getUser: function getUser() {
+      var _this9 = this;
+
+      axios.post("get-user").then(function (response) {
+        _this9.userRole = response.data;
+      });
     }
   }
 });
@@ -3830,8 +3926,94 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["list"],
+  props: ["list", 'userRole'],
   data: function data() {
     return {
       municipalities: [],
@@ -3870,6 +4052,7 @@ __webpack_require__.r(__webpack_exports__);
     save: function save() {
       var _this4 = this;
 
+      delete this.list.barangay;
       axios.patch("tally/" + this.list.recid, this.list).then(function (response) {
         _this4.$snotify.success("Updated successfully", "Done");
 
@@ -25178,7 +25361,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-body {\r\n  padding: 5px !important;\n}\n.modal-header {\r\n  padding: 5px !important;\n}\n.modal-body {\r\n  padding: 5px 0 !important;\n}\n.modal-footer {\r\n  padding: unset !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.card-body {\n  padding: 5px !important;\n}\n.modal-header {\n  padding: 5px !important;\n}\n.modal-body {\n  padding: 5px 0 !important;\n}\n.modal-footer {\n  padding: unset !important;\n}\n", ""]);
 
 // exports
 
@@ -25197,7 +25380,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.custom_view {\r\n  display: none;\r\n  cursor: pointer;\n}\ntr:hover .custom_view {\r\n  display: unset;\n}\n.create_new {\r\n  cursor: pointer;\r\n  font-weight: bold;\n}\n.create_new:hover {\r\n  text-decoration: underline;\n}\n.filtercol {\r\n  padding-right: 5px !important;\r\n  padding-left: 5px !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.custom_view {\n  display: none;\n  cursor: pointer;\n}\ntr:hover .custom_view {\n  display: unset;\n}\n.create_new {\n  cursor: pointer;\n  font-weight: bold;\n}\n.create_new:hover {\n  text-decoration: underline;\n}\n.filtercol {\n  padding-right: 5px !important;\n  padding-left: 5px !important;\n}\n", ""]);
 
 // exports
 
@@ -25216,7 +25399,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-body {\r\n    padding: 5px !important;\n}\n.modal-header {\r\n    padding: 5px !important;\n}\n.modal-body{\r\n    padding: 5px 0 !important;\n}\n.modal-footer {\r\n    padding: unset !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.card-body {\n  padding: 5px !important;\n}\n.modal-header {\n  padding: 5px !important;\n}\n.modal-body {\n  padding: 5px 0 !important;\n}\n.modal-footer {\n  padding: unset !important;\n}\n", ""]);
 
 // exports
 
@@ -25235,7 +25418,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-body {\r\n  padding: 5px !important;\n}\n.modal-header {\r\n  padding: 5px !important;\n}\n.modal-footer {\r\n  padding: unset !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.card-body {\n  padding: 5px !important;\n}\n.modal-header {\n  padding: 5px !important;\n}\n.modal-footer {\n  padding: unset !important;\n}\n", ""]);
 
 // exports
 
@@ -25254,7 +25437,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-body {\r\n  padding: 5px !important;\n}\n.modal-header {\r\n  padding: 5px !important;\n}\n.modal-footer {\r\n  padding: unset !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.card-body {\n  padding: 5px !important;\n}\n.modal-header {\n  padding: 5px !important;\n}\n.modal-footer {\n  padding: unset !important;\n}\n", ""]);
 
 // exports
 
@@ -25273,7 +25456,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-body {\r\n  padding: 5px !important;\n}\n.modal-header {\r\n  padding: 5px !important;\n}\n.modal-footer {\r\n  padding: unset !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.card-body {\n  padding: 5px !important;\n}\n.modal-header {\n  padding: 5px !important;\n}\n.modal-footer {\n  padding: unset !important;\n}\n", ""]);
 
 // exports
 
@@ -75730,7 +75913,36 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(1),
+                _c(
+                  "ul",
+                  {
+                    staticClass: "nav nav-tabs",
+                    attrs: { id: "myTab", role: "tablist" }
+                  },
+                  [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _vm.userRole == "Province"
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "nav-link",
+                              attrs: {
+                                id: "profile-tab",
+                                "data-toggle": "tab",
+                                href: "#profile",
+                                role: "tab",
+                                "aria-controls": "profile",
+                                "aria-selected": "false"
+                              }
+                            },
+                            [_vm._v("PHO")]
+                          )
+                        : _vm._e()
+                    ])
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -77339,6 +77551,316 @@ var render = function() {
                           ])
                         ])
                       ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "tab-pane fade",
+                        attrs: {
+                          id: "profile",
+                          role: "tabpanel",
+                          "aria-labelledby": "profile-tab"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-6" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-6 col-form-label" },
+                                    [_vm._v("PUI Admitted")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pui_admitted,
+                                          expression: "list.pui_admitted"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value: _vm.list.pui_admitted
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_admitted",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("PUI Negative")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model.number",
+                                          value: _vm.list.pui_negative,
+                                          expression: "list.pui_negative",
+                                          modifiers: { number: true }
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number", min: "0" },
+                                      domProps: {
+                                        value: _vm.list.pui_negative
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_negative",
+                                            _vm._n($event.target.value)
+                                          )
+                                        },
+                                        blur: function($event) {
+                                          return _vm.$forceUpdate()
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("PUI Recovered")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model.number",
+                                          value: _vm.list.pui_recovered,
+                                          expression: "list.pui_recovered",
+                                          modifiers: { number: true }
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number", min: "0" },
+                                      domProps: {
+                                        value: _vm.list.pui_recovered
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_recovered",
+                                            _vm._n($event.target.value)
+                                          )
+                                        },
+                                        blur: function($event) {
+                                          return _vm.$forceUpdate()
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("PUI Deaths")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model.number",
+                                          value: _vm.list.pui_deaths,
+                                          expression: "list.pui_deaths",
+                                          modifiers: { number: true }
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number", min: "0" },
+                                      domProps: { value: _vm.list.pui_deaths },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_deaths",
+                                            _vm._n($event.target.value)
+                                          )
+                                        },
+                                        blur: function($event) {
+                                          return _vm.$forceUpdate()
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-6" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("Covid Positive")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.covid_positive,
+                                          expression: "list.covid_positive"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value: _vm.list.covid_positive
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "covid_positive",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("Covid Discharged")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.covid_discharged,
+                                          expression: "list.covid_discharged"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value: _vm.list.covid_discharged
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "covid_discharged",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("Covid Deaths")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model.number",
+                                          value: _vm.list.covid_deaths,
+                                          expression: "list.covid_deaths",
+                                          modifiers: { number: true }
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number", min: "0" },
+                                      domProps: {
+                                        value: _vm.list.covid_deaths
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "covid_deaths",
+                                            _vm._n($event.target.value)
+                                          )
+                                        },
+                                        blur: function($event) {
+                                          return _vm.$forceUpdate()
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ])
+                          ])
+                        ])
+                      ]
                     )
                   ]
                 )
@@ -77405,47 +77927,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "nav nav-tabs", attrs: { id: "myTab", role: "tablist" } },
-      [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link active",
-              attrs: {
-                id: "home-tab",
-                "data-toggle": "tab",
-                href: "#home",
-                role: "tab",
-                "aria-controls": "home",
-                "aria-selected": "true"
-              }
-            },
-            [_vm._v("LGU")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                id: "profile-tab",
-                "data-toggle": "tab",
-                href: "#profile",
-                role: "tab",
-                "aria-controls": "profile",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("PHO")]
-          )
-        ])
-      ]
-    )
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link active",
+          attrs: {
+            id: "home-tab",
+            "data-toggle": "tab",
+            href: "#home",
+            role: "tab",
+            "aria-controls": "home",
+            "aria-selected": "true"
+          }
+        },
+        [_vm._v("LGU")]
+      )
+    ])
   },
   function() {
     var _vm = this
@@ -77474,27 +77972,19 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-sm-9" }, [
         _c("div", { staticClass: "form-group row" }, [
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v(
-              "\n                      Mild with Co-morbidity\n                    "
-            )
+            _vm._v("Mild with Co-morbidity")
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v(
-              "\n                      Severe with Co-morbidity\n                    "
-            )
+            _vm._v("Severe with Co-morbidity")
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v(
-              "\n                      Mild w/o Co-morbidity\n                    "
-            )
+            _vm._v("Mild w/o Co-morbidity")
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v(
-              "\n                      Sever w/o Co-morbidity\n                    "
-            )
+            _vm._v("Sever w/o Co-morbidity")
           ])
         ])
       ])
@@ -77816,6 +78306,7 @@ var render = function() {
       { staticClass: "row justify-content-center" },
       [
         _c("create", {
+          attrs: { userRole: _vm.userRole },
           on: {
             refresh: function($event) {
               return _vm.getData()
@@ -77824,7 +78315,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("edit", {
-          attrs: { list: _vm.editData },
+          attrs: { list: _vm.editData, userRole: _vm.userRole },
           on: {
             refresh: function($event) {
               return _vm.getData()
@@ -78401,7 +78892,36 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(1),
+                _c(
+                  "ul",
+                  {
+                    staticClass: "nav nav-tabs",
+                    attrs: { id: "myTab", role: "tablist" }
+                  },
+                  [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _vm.userRole == "Province"
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "nav-link",
+                              attrs: {
+                                id: "profile-edit-tab",
+                                "data-toggle": "tab",
+                                href: "#profile-edit",
+                                role: "tab",
+                                "aria-controls": "profile-edit",
+                                "aria-selected": "false"
+                              }
+                            },
+                            [_vm._v("PHO")]
+                          )
+                        : _vm._e()
+                    ])
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -78415,9 +78935,9 @@ var render = function() {
                       {
                         staticClass: "tab-pane fade show active",
                         attrs: {
-                          id: "home",
+                          id: "home-edit",
                           role: "tabpanel",
-                          "aria-labelledby": "home-tab"
+                          "aria-labelledby": "home-edit-tab"
                         }
                       },
                       [
@@ -79886,6 +80406,316 @@ var render = function() {
                           ])
                         ])
                       ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "tab-pane fade",
+                        attrs: {
+                          id: "profile-edit",
+                          role: "tabpanel",
+                          "aria-labelledby": "profile-edit-tab"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-6" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-6 col-form-label" },
+                                    [_vm._v("PUI Admitted")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.pui_admitted,
+                                          expression: "list.pui_admitted"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value: _vm.list.pui_admitted
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_admitted",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("PUI Negative")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model.number",
+                                          value: _vm.list.pui_negative,
+                                          expression: "list.pui_negative",
+                                          modifiers: { number: true }
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number", min: "0" },
+                                      domProps: {
+                                        value: _vm.list.pui_negative
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_negative",
+                                            _vm._n($event.target.value)
+                                          )
+                                        },
+                                        blur: function($event) {
+                                          return _vm.$forceUpdate()
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("PUI Recovered")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model.number",
+                                          value: _vm.list.pui_recovered,
+                                          expression: "list.pui_recovered",
+                                          modifiers: { number: true }
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number", min: "0" },
+                                      domProps: {
+                                        value: _vm.list.pui_recovered
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_recovered",
+                                            _vm._n($event.target.value)
+                                          )
+                                        },
+                                        blur: function($event) {
+                                          return _vm.$forceUpdate()
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("PUI Deaths")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model.number",
+                                          value: _vm.list.pui_deaths,
+                                          expression: "list.pui_deaths",
+                                          modifiers: { number: true }
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number", min: "0" },
+                                      domProps: { value: _vm.list.pui_deaths },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "pui_deaths",
+                                            _vm._n($event.target.value)
+                                          )
+                                        },
+                                        blur: function($event) {
+                                          return _vm.$forceUpdate()
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-6" }, [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("Covid Positive")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.covid_positive,
+                                          expression: "list.covid_positive"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value: _vm.list.covid_positive
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "covid_positive",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("Covid Discharged")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.list.covid_discharged,
+                                          expression: "list.covid_discharged"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value: _vm.list.covid_discharged
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "covid_discharged",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-sm-6 col-form-label" },
+                                    [_vm._v("Covid Deaths")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model.number",
+                                          value: _vm.list.covid_deaths,
+                                          expression: "list.covid_deaths",
+                                          modifiers: { number: true }
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      attrs: { type: "number", min: "0" },
+                                      domProps: {
+                                        value: _vm.list.covid_deaths
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.list,
+                                            "covid_deaths",
+                                            _vm._n($event.target.value)
+                                          )
+                                        },
+                                        blur: function($event) {
+                                          return _vm.$forceUpdate()
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ])
+                          ])
+                        ])
+                      ]
                     )
                   ]
                 )
@@ -79966,47 +80796,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "nav nav-tabs", attrs: { id: "myTab", role: "tablist" } },
-      [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link active",
-              attrs: {
-                id: "home-tab",
-                "data-toggle": "tab",
-                href: "#home",
-                role: "tab",
-                "aria-controls": "home",
-                "aria-selected": "true"
-              }
-            },
-            [_vm._v("LGU")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                id: "profile-tab",
-                "data-toggle": "tab",
-                href: "#profile",
-                role: "tab",
-                "aria-controls": "profile",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("PHO")]
-          )
-        ])
-      ]
-    )
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link active",
+          attrs: {
+            id: "home-edit-tab",
+            "data-toggle": "tab",
+            href: "#home-edit",
+            role: "tab",
+            "aria-controls": "home-edit",
+            "aria-selected": "true"
+          }
+        },
+        [_vm._v("LGU")]
+      )
+    ])
   },
   function() {
     var _vm = this
@@ -80035,27 +80841,19 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-sm-9" }, [
         _c("div", { staticClass: "form-group row" }, [
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v(
-              "\n                      Mild with Co-morbidity\n                    "
-            )
+            _vm._v("Mild with Co-morbidity")
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v(
-              "\n                      Severe with Co-morbidity\n                    "
-            )
+            _vm._v("Severe with Co-morbidity")
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v(
-              "\n                      Mild w/o Co-morbidity\n                    "
-            )
+            _vm._v("Mild w/o Co-morbidity")
           ]),
           _vm._v(" "),
           _c("label", { staticClass: "col-sm-3 col-form-label text-center" }, [
-            _vm._v(
-              "\n                      Sever w/o Co-morbidity\n                    "
-            )
+            _vm._v("Sever w/o Co-morbidity")
           ])
         ])
       ])
@@ -97682,8 +98480,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\xampp\htdocs\covid\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\xampp\htdocs\covid\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/covid/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/covid/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

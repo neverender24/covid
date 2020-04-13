@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <create @refresh="getData()"></create>
-      <edit :list="editData" @refresh="getData()"></edit>
+      <create @refresh="getData()" :userRole="userRole"></create>
+      <edit :list="editData" @refresh="getData()" :userRole="userRole"></edit>
       <report-prov></report-prov>
       <report-mun :municipalities="municipalities"></report-mun>
       <report-brgy :municipalities="municipalities"></report-brgy>
@@ -291,10 +291,12 @@ export default {
           data: []
         }
       ],
+      userRole: ''
     };
   },
   async mounted() {
     this.getData();
+    this.getUser()
 
     axios.get("get-municipalities").then(response => {
       this.municipalities = response.data;
@@ -512,6 +514,13 @@ export default {
       this.tableData.barangay_id = "";
       this.tableData.date_updated = "";
       this.getData();
+    },
+    getUser() {
+      axios
+        .post("get-user", )
+        .then(response => {
+          this.userRole = response.data;
+        });
     }
   }
 };

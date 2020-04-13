@@ -78,32 +78,33 @@
               <li class="nav-item">
                 <a
                   class="nav-link active"
-                  id="home-tab"
+                  id="home-edit-tab"
                   data-toggle="tab"
-                  href="#home"
+                  href="#home-edit"
                   role="tab"
-                  aria-controls="home"
+                  aria-controls="home-edit"
                   aria-selected="true"
                 >LGU</a>
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  id="profile-tab"
+                  id="profile-edit-tab"
                   data-toggle="tab"
-                  href="#profile"
+                  href="#profile-edit"
                   role="tab"
-                  aria-controls="profile"
+                  aria-controls="profile-edit"
                   aria-selected="false"
+                  v-if="userRole=='Province'"
                 >PHO</a>
               </li>
             </ul>
             <div class="tab-content pt-3" id="myTabContent">
               <div
                 class="tab-pane fade show active"
-                id="home"
+                id="home-edit"
                 role="tabpanel"
-                aria-labelledby="home-tab"
+                aria-labelledby="home-edit-tab"
               >
                 <div class="card">
                   <div class="card-body">
@@ -156,18 +157,10 @@
                   <label class="col-sm-3 col-form-label"></label>
                   <div class="col-sm-9">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label text-center">
-                        Mild with Co-morbidity
-                      </label>
-                      <label class="col-sm-3 col-form-label text-center">
-                        Severe with Co-morbidity
-                      </label>
-                      <label class="col-sm-3 col-form-label text-center">
-                        Mild w/o Co-morbidity
-                      </label>
-                      <label class="col-sm-3 col-form-label text-center">
-                        Sever w/o Co-morbidity
-                      </label>
+                      <label class="col-sm-3 col-form-label text-center">Mild with Co-morbidity</label>
+                      <label class="col-sm-3 col-form-label text-center">Severe with Co-morbidity</label>
+                      <label class="col-sm-3 col-form-label text-center">Mild w/o Co-morbidity</label>
+                      <label class="col-sm-3 col-form-label text-center">Sever w/o Co-morbidity</label>
                     </div>
                   </div>
                 </div>
@@ -563,6 +556,99 @@
                 </div>
                 <!-- END PUI in BRGY Referred to hospital -->
               </div>
+
+              <!-- 
+  PHO TAB:
+              -->
+              <div class="tab-pane fade" id="profile-edit" role="tabpanel" aria-labelledby="profile-edit-tab">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group row">
+                          <label class="col-6 col-form-label">PUI Admitted</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model="list.pui_admitted"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">PUI Negative</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model.number="list.pui_negative"
+                              min="0"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">PUI Recovered</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model.number="list.pui_recovered"
+                              min="0"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">PUI Deaths</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model.number="list.pui_deaths"
+                              min="0"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">Covid Positive</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model="list.covid_positive"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">Covid Discharged</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model="list.covid_discharged"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">Covid Deaths</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model.number="list.covid_deaths"
+                              min="0"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 
+                END PHO TAB
+              -->
             </div>
           </div>
         </div>
@@ -579,25 +665,25 @@
 </template>
  <style>
 .card-body {
-    padding: 5px !important;
+  padding: 5px !important;
 }
 .modal-header {
-    padding: 5px !important;
+  padding: 5px !important;
 }
-.modal-body{
-    padding: 5px 0 !important;
+.modal-body {
+  padding: 5px 0 !important;
 }
 .modal-footer {
-    padding: unset !important;
+  padding: unset !important;
 }
 </style>
 <script>
 export default {
-  props: ["list"],
+  props: ["list", 'userRole'],
   data() {
     return {
       municipalities: [],
-      barangays: [],
+      barangays: []
     };
   },
   mounted() {
@@ -606,15 +692,15 @@ export default {
     });
   },
   watch: {
-        "list.municipality_id": function() {
-            var self = this;
-           axios
+    "list.municipality_id": function() {
+      var self = this;
+      axios
         .post("get-barangays", { municipality_id: this.list.municipality_id })
         .then(response => {
           this.barangays = response.data;
         });
-        }
-    },
+    }
+  },
   methods: {
     getBarangays() {
       axios
@@ -624,6 +710,8 @@ export default {
         });
     },
     save() {
+      delete this.list.barangay;
+
       axios.patch("tally/" + this.list.recid, this.list).then(response => {
         this.$snotify.success("Updated successfully", "Done");
         this.$emit("refresh");
@@ -631,40 +719,31 @@ export default {
     },
 
     deleteRecord() {
-            this.$snotify.confirm(
-                "Are you sure you want to delete?",
-                "Deletion",
-                {
-                    position: "centerCenter",
-                    backdrop: 0.4,
-                    buttons: [
-                        {
-                            text: "Yes",
-                            action: toast => {
-                                axios
-                                    .delete("tally/" + this.list.recid)
-                                    .then(response => {
-                                        $("#editModal").modal("hide");
-                                        this.$emit("refresh");
-                                        this.$snotify.success(
-                                            "Deleted successfully",
-                                            "Done"
-                                        );
-                                        this.$snotify.remove(toast.id);
-                                    });
-                            }
-                        },
-                        {
-                            text: "No",
-                            action: toast => {
-                                this.$snotify.remove(toast.id);
-                            },
-                            bold: true
-                        }
-                    ]
-                }
-            );
-        }
+      this.$snotify.confirm("Are you sure you want to delete?", "Deletion", {
+        position: "centerCenter",
+        backdrop: 0.4,
+        buttons: [
+          {
+            text: "Yes",
+            action: toast => {
+              axios.delete("tally/" + this.list.recid).then(response => {
+                $("#editModal").modal("hide");
+                this.$emit("refresh");
+                this.$snotify.success("Deleted successfully", "Done");
+                this.$snotify.remove(toast.id);
+              });
+            }
+          },
+          {
+            text: "No",
+            action: toast => {
+              this.$snotify.remove(toast.id);
+            },
+            bold: true
+          }
+        ]
+      });
+    }
   }
 };
 </script>

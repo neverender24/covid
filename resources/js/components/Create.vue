@@ -47,7 +47,7 @@
                         <select
                           class="form-control form-control-sm"
                           v-model.trim="$v.list.barangay_id.$model"
-                           :class="{ 'is-invalid': $v.list.barangay_id.$error }"
+                          :class="{ 'is-invalid': $v.list.barangay_id.$error }"
                         >
                           <option
                             v-for="item in barangays"
@@ -66,7 +66,7 @@
                           type="date"
                           class="form-control form-control-sm"
                           v-model.trim="$v.list.date_updated.$model"
-                           :class="{ 'is-invalid': $v.list.date_updated.$error }"
+                          :class="{ 'is-invalid': $v.list.date_updated.$error }"
                           @input="checkIfBarangayEncoded(list.date_updated)"
                         />
                       </label>
@@ -96,6 +96,7 @@
                   role="tab"
                   aria-controls="profile"
                   aria-selected="false"
+                  v-if="userRole=='Province'"
                 >PHO</a>
               </li>
             </ul>
@@ -158,18 +159,10 @@
                   <label class="col-sm-3 col-form-label"></label>
                   <div class="col-sm-9">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label text-center">
-                        Mild with Co-morbidity
-                      </label>
-                      <label class="col-sm-3 col-form-label text-center">
-                        Severe with Co-morbidity
-                      </label>
-                      <label class="col-sm-3 col-form-label text-center">
-                        Mild w/o Co-morbidity
-                      </label>
-                      <label class="col-sm-3 col-form-label text-center">
-                        Sever w/o Co-morbidity
-                      </label>
+                      <label class="col-sm-3 col-form-label text-center">Mild with Co-morbidity</label>
+                      <label class="col-sm-3 col-form-label text-center">Severe with Co-morbidity</label>
+                      <label class="col-sm-3 col-form-label text-center">Mild w/o Co-morbidity</label>
+                      <label class="col-sm-3 col-form-label text-center">Sever w/o Co-morbidity</label>
                     </div>
                   </div>
                 </div>
@@ -202,7 +195,7 @@
                                 type="number"
                                 class="form-control form-control-sm"
                                 v-model="list.pui_brgy_severe_elderly_wcom"
-                                 @input="compute_pui()"
+                                @input="compute_pui()"
                               />
                             </div>
                           </div>
@@ -215,7 +208,7 @@
                                 type="number"
                                 class="form-control form-control-sm"
                                 v-model="list.pui_brgy_mild_elderly_ncom"
-                                 @input="compute_pui()"
+                                @input="compute_pui()"
                               />
                             </div>
                           </div>
@@ -228,7 +221,7 @@
                                 type="number"
                                 class="form-control form-control-sm"
                                 v-model="list.pui_brgy_severe_elderly_ncom"
-                                 @input="compute_pui()"
+                                @input="compute_pui()"
                               />
                             </div>
                           </div>
@@ -248,7 +241,7 @@
                                 type="number"
                                 class="form-control form-control-sm"
                                 v-model="list.pui_brgy_mild_notelderly_wcom"
-                                 @input="compute_pui()"
+                                @input="compute_pui()"
                               />
                             </div>
                           </div>
@@ -261,7 +254,7 @@
                                 type="number"
                                 class="form-control form-control-sm"
                                 v-model="list.pui_brgy_severe_notelderly_wcom"
-                                 @input="compute_pui()"
+                                @input="compute_pui()"
                               />
                             </div>
                           </div>
@@ -274,7 +267,7 @@
                                 type="number"
                                 class="form-control form-control-sm"
                                 v-model="list.pui_brgy_mild_notelderly_ncom"
-                                 @input="compute_pui()"
+                                @input="compute_pui()"
                               />
                             </div>
                           </div>
@@ -287,7 +280,7 @@
                                 type="number"
                                 class="form-control form-control-sm"
                                 v-model="list.pui_brgy_severe_notelderly_ncom"
-                                 @input="compute_pui()"
+                                @input="compute_pui()"
                               />
                             </div>
                           </div>
@@ -592,6 +585,98 @@
                 </div>
                 <!-- END PUI in BRGY Referred to hospital -->
               </div>
+              <!-- 
+  PHO TAB:
+              -->
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group row">
+                          <label class="col-6 col-form-label">PUI Admitted</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model="list.pui_admitted"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">PUI Negative</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model.number="list.pui_negative"
+                              min="0"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">PUI Recovered</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model.number="list.pui_recovered"
+                              min="0"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">PUI Deaths</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model.number="list.pui_deaths"
+                              min="0"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">Covid Positive</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model="list.covid_positive"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">Covid Discharged</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model="list.covid_discharged"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-6 col-form-label">Covid Deaths</label>
+                          <div class="col-6">
+                            <input
+                              type="number"
+                              class="form-control form-control-sm"
+                              v-model.number="list.covid_deaths"
+                              min="0"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 
+                END PHO TAB
+              -->
             </div>
           </div>
         </div>
@@ -624,10 +709,10 @@
 import { required } from "vuelidate/lib/validators";
 
 export default {
+  props: ['userRole'],
   data() {
     return {
-      list: {
-      },
+      list: {},
       municipalities: [],
       barangays: []
     };
@@ -648,42 +733,48 @@ export default {
     },
     save() {
       this.$v.$touch();
-            if (this.$v.$invalid) {
-                return false;
-            }
-
-      if (this.municipality_id == '' || this.barangay_id == '' || this.date_updated == '') {
-        return false
+      if (this.$v.$invalid) {
+        return false;
       }
 
-      axios.post("tally", this.list).then(response => {
-        this.$snotify.success("Save successfully", "Done");
-        this.list = {};
-        this.$emit("refresh");
-      }).catch(error => {
+      if (
+        this.municipality_id == "" ||
+        this.barangay_id == "" ||
+        this.date_updated == ""
+      ) {
+        return false;
+      }
 
+      axios
+        .post("tally", this.list)
+        .then(response => {
+          this.$snotify.success("Save successfully", "Done");
+          this.list = {};
+          this.$emit("refresh");
+        })
+        .catch(error => {
           this.$snotify.error(error.response.data.error, "Error");
-      });
+        });
     },
     compute_pui() {
-        this.list.pui_brgy = 0
-        this.list.pui_brgy = _.sum([
-            parseInt(this.list.pui_brgy_mild_elderly_wcom) | 0,
-            parseInt(this.list.pui_brgy_mild_elderly_ncom) | 0,
-            parseInt(this.list.pui_brgy_mild_notelderly_wcom) | 0,
-            parseInt(this.list.pui_brgy_mild_notelderly_ncom) | 0,
-            parseInt(this.list.pui_brgy_severe_elderly_wcom) | 0,
-            parseInt(this.list.pui_brgy_severe_elderly_ncom) | 0,
-            parseInt(this.list.pui_brgy_severe_notelderly_wcom) | 0,
-            parseInt(this.list.pui_brgy_severe_notelderly_ncom) | 0,
-            ])
+      this.list.pui_brgy = 0;
+      this.list.pui_brgy = _.sum([
+        parseInt(this.list.pui_brgy_mild_elderly_wcom) | 0,
+        parseInt(this.list.pui_brgy_mild_elderly_ncom) | 0,
+        parseInt(this.list.pui_brgy_mild_notelderly_wcom) | 0,
+        parseInt(this.list.pui_brgy_mild_notelderly_ncom) | 0,
+        parseInt(this.list.pui_brgy_severe_elderly_wcom) | 0,
+        parseInt(this.list.pui_brgy_severe_elderly_ncom) | 0,
+        parseInt(this.list.pui_brgy_severe_notelderly_wcom) | 0,
+        parseInt(this.list.pui_brgy_severe_notelderly_ncom) | 0
+      ]);
     },
     checkIfBarangayEncoded(date) {
-        axios
+      axios
         .post("check-barangay-encoded", {
           date_updated: this.list.date_updated,
           municipality_id: this.list.municipality_id,
-          barangay_id: this.list.barangay_id 
+          barangay_id: this.list.barangay_id
         })
         .then(response => {
           if (response.data > 0) {
@@ -692,45 +783,44 @@ export default {
         });
     },
     compute_dis_pui() {
-        this.list.pui_dis = 0
-        this.list.pui_dis = _.sum([
-            parseInt(this.list.pui_dis_mild_elderly_wcom) | 0,
-            parseInt(this.list.pui_dis_mild_elderly_ncom) | 0,
-            parseInt(this.list.pui_dis_mild_notelderly_wcom) | 0,
-            parseInt(this.list.pui_dis_mild_notelderly_ncom) | 0,
-            parseInt(this.list.pui_dis_severe_elderly_wcom) | 0,
-            parseInt(this.list.pui_dis_severe_elderly_ncom) | 0,
-            parseInt(this.list.pui_dis_severe_notelderly_wcom) | 0,
-            parseInt(this.list.pui_dis_severe_notelderly_ncom) | 0,
-            ])
+      this.list.pui_dis = 0;
+      this.list.pui_dis = _.sum([
+        parseInt(this.list.pui_dis_mild_elderly_wcom) | 0,
+        parseInt(this.list.pui_dis_mild_elderly_ncom) | 0,
+        parseInt(this.list.pui_dis_mild_notelderly_wcom) | 0,
+        parseInt(this.list.pui_dis_mild_notelderly_ncom) | 0,
+        parseInt(this.list.pui_dis_severe_elderly_wcom) | 0,
+        parseInt(this.list.pui_dis_severe_elderly_ncom) | 0,
+        parseInt(this.list.pui_dis_severe_notelderly_wcom) | 0,
+        parseInt(this.list.pui_dis_severe_notelderly_ncom) | 0
+      ]);
     },
     compute_ref_pui() {
-        this.list.pui_ref = 0
-        this.list.pui_ref = _.sum([
-            parseInt(this.list.pui_ref_mild_elderly_wcom) | 0,
-            parseInt(this.list.pui_ref_mild_elderly_ncom) | 0,
-            parseInt(this.list.pui_ref_mild_notelderly_wcom) | 0,
-            parseInt(this.list.pui_ref_mild_notelderly_ncom) | 0,
-            parseInt(this.list.pui_ref_severe_elderly_wcom) | 0,
-            parseInt(this.list.pui_ref_severe_elderly_ncom) | 0,
-            parseInt(this.list.pui_ref_severe_notelderly_wcom) | 0,
-            parseInt(this.list.pui_ref_severe_notelderly_ncom) | 0,
-            ])
+      this.list.pui_ref = 0;
+      this.list.pui_ref = _.sum([
+        parseInt(this.list.pui_ref_mild_elderly_wcom) | 0,
+        parseInt(this.list.pui_ref_mild_elderly_ncom) | 0,
+        parseInt(this.list.pui_ref_mild_notelderly_wcom) | 0,
+        parseInt(this.list.pui_ref_mild_notelderly_ncom) | 0,
+        parseInt(this.list.pui_ref_severe_elderly_wcom) | 0,
+        parseInt(this.list.pui_ref_severe_elderly_ncom) | 0,
+        parseInt(this.list.pui_ref_severe_notelderly_wcom) | 0,
+        parseInt(this.list.pui_ref_severe_notelderly_ncom) | 0
+      ]);
     }
   },
-    validations: {
-        list: {
-            municipality_id: {
-                required
-            },
-            barangay_id: {
-                required
-            }
-            ,
-            date_updated: {
-                required
-            }
-        }
+  validations: {
+    list: {
+      municipality_id: {
+        required
+      },
+      barangay_id: {
+        required
+      },
+      date_updated: {
+        required
+      }
     }
+  }
 };
 </script>
