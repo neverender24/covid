@@ -4,7 +4,7 @@ Route::get('/', function () {
     return view('report');
 });
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -17,3 +17,4 @@ Route::post('get-user', 'HomeController@getUserRole');
 Route::post('check-barangay-encoded', 'TallyController@checkBarangayEncoded');
 Route::get('charts-province', 'ReportController@chartsProvince');
 Route::get('charts-daily', 'ReportController@chartsDaily');
+Auth::routes();

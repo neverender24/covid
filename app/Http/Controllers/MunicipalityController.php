@@ -13,6 +13,10 @@ class MunicipalityController extends Controller
     }
 
     public function getAllMunicipalities() {
+        if (auth()->guest()) {
+            return $this->model->all();
+        }
+
         if (auth()->user()->role != 'Province') {
             return $this->model->where('recid', auth()->user()->municipality_id)->get();
         } else {

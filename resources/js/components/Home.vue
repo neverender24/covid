@@ -32,9 +32,12 @@ export default {
         ReportBrgy
     },
     data() {
-        return {};
+        return {
+                  municipalities: [],
+      barangays: []
+        }
     },
-    async mounted() {
+    mounted() {
         axios.get("get-municipalities").then(response => {
             this.municipalities = response.data;
         });
