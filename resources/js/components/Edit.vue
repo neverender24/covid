@@ -84,7 +84,7 @@
                   role="tab"
                   aria-controls="home-edit"
                   aria-selected="true"
-                >LGU</a>
+                >OLD</a>
               </li>
               <li class="nav-item">
                 <a
@@ -96,7 +96,7 @@
                   aria-controls="profile-edit"
                   aria-selected="false"
                   v-if="userRole=='Province'"
-                >PHO</a>
+                >NEW</a>
               </li>
             </ul>
             <div class="tab-content pt-3" id="myTabContent">
@@ -559,107 +559,198 @@
 
               <!-- 
   PHO TAB:
-              -->
-              <div class="tab-pane fade" id="profile-edit" role="tabpanel" aria-labelledby="profile-edit-tab">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="form-group row">
-                          <label class="col-6 col-form-label">PUI Admitted</label>
-                          <div class="col-6">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.pui_admitted"
-                            />
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-6 col-form-label">PUI Negative</label>
-                          <div class="col-6">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model.number="list.pui_negative"
-                              min="0"
-                            />
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-6 col-form-label">PUI Recovered</label>
-                          <div class="col-6">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model.number="list.pui_recovered"
-                              min="0"
-                            />
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-6 col-form-label">PUI Deaths</label>
-                          <div class="col-6">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model.number="list.pui_deaths"
-                              min="0"
-                            />
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-6 col-form-label">PUI Probable</label>
-                          <div class="col-6">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model.number="list.pui_probable"
-                              min="0"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="form-group row">
-                          <label class="col-sm-6 col-form-label">Covid Positive</label>
-                          <div class="col-6">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.covid_positive"
-                            />
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-6 col-form-label">Covid Discharged</label>
-                          <div class="col-6">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model="list.covid_discharged"
-                            />
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-6 col-form-label">Covid Deaths</label>
-                          <div class="col-6">
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              v-model.number="list.covid_deaths"
-                              min="0"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 
+                            -->
+                            <div
+                                class="tab-pane fade"
+                                id="profile-edit"
+                                role="tabpanel"
+                                aria-labelledby="profile-edit-tab"
+                            >
+                                <div class="card">
+                                    <div class="card-body">
+                                        <!-- body -->
+                                        <div class="row">
+                                            <!-- PUM -->
+                                            <div class="col-6 mb-3">
+                                                <div class="form-group row">
+                                                    <label class="col-6 col-form-label">New</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model="list.pum_brgy"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label
+                                                        class="col-sm-6 col-form-label"
+                                                    >Completed Quarantine</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.pum_brgy_completed_quarantine"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label
+                                                        class="col-sm-6 col-form-label"
+                                                    >Classified Suspect</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.pum_brgy_referred_pui"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end PUM -->
+                                            <!-- suspect -->
+                                            <div class="col-6 mb-3">
+                                                <div class="form-group row">
+                                                    <label
+                                                        class="col-sm-6 col-form-label"
+                                                    >Home Isolation</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.suspect_home"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label
+                                                        class="col-sm-6 col-form-label"
+                                                    >Facility Based Isolation</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.suspect_facility"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Admitted</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model="list.suspect_admitted"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end suspect -->
+                                        </div>
+
+                                        <div class="row">
+                                            <!-- probable -->
+                                            <div class="col-6 mb-3">
+                                                <div class="form-group row">
+                                                    <label
+                                                        class="col-sm-6 col-form-label"
+                                                    >Home Isolation</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model="list.probable_home"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label
+                                                        class="col-sm-6 col-form-label"
+                                                    >Facility Based Isolation</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.probable_facility"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Admitted</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.probable_admitted"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Negative</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.negative"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end probable -->
+                                            <!-- confirmed -->
+                                            <div class="col-6 mb-3">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Positive</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.covid_positive"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Recovered</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.covid_discharged"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Deaths</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.covid_deaths"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end confirmed -->
+                                        </div>
+                                        <!-- end body -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 
                 END PHO TAB
-              -->
+                            -->
             </div>
           </div>
         </div>
