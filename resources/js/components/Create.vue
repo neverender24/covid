@@ -907,6 +907,49 @@
                                             </div>
                                             <!-- end confirmed -->
                                         </div>
+
+                                        <div class="row">
+                                            <!-- Test -->
+                                            <div class="col-6 mb-3">
+                                                <div class="form-group row">
+                                                    <label class="col-6 col-form-label">Rapid Test</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model="list.rapid_test"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label
+                                                        class="col-sm-6 col-form-label"
+                                                    >Unofficial Test</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.unofficial_test"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label
+                                                        class="col-sm-6 col-form-label"
+                                                    >Official Test</label>
+                                                    <div class="col-6">
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            v-model.number="list.official_test"
+                                                            min="0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end test -->
+                                        </div>
                                         <!-- end body -->
                                     </div>
                                 </div>
