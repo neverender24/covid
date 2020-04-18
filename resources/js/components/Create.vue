@@ -735,6 +735,7 @@
                                         <div class="row">
                                             <!-- PUM -->
                                             <div class="col-6 mb-3">
+                                                <b>PUM</b>
                                                 <div class="form-group row">
                                                     <label class="col-6 col-form-label">New</label>
                                                     <div class="col-6">
@@ -775,6 +776,7 @@
                                             <!-- end PUM -->
                                             <!-- suspect -->
                                             <div class="col-6 mb-3">
+                                                <b>SUSPECT</b>
                                                 <div class="form-group row">
                                                     <label
                                                         class="col-sm-6 col-form-label"
@@ -819,6 +821,7 @@
                                         <div class="row">
                                             <!-- probable -->
                                             <div class="col-6 mb-3">
+                                            <b>PROBABLE</b>
                                                 <div class="form-group row">
                                                     <label
                                                         class="col-sm-6 col-form-label"
