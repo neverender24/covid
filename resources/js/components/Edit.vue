@@ -77,31 +77,31 @@
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
                 <a
-                  class="nav-link active"
+                  class="nav-link"
                   id="home-edit-tab"
                   data-toggle="tab"
                   href="#home-edit"
                   role="tab"
                   aria-controls="home-edit"
-                  aria-selected="true"
+                  aria-selected="false"
                 >OLD</a>
               </li>
               <li class="nav-item">
                 <a
-                  class="nav-link"
+                  class="nav-link active"
                   id="profile-edit-tab"
                   data-toggle="tab"
                   href="#profile-edit"
                   role="tab"
                   aria-controls="profile-edit"
-                  aria-selected="false"
+                  aria-selected="true"
                   v-if="userRole=='Province'"
                 >NEW</a>
               </li>
             </ul>
             <div class="tab-content pt-3" id="myTabContent">
               <div
-                class="tab-pane fade show active"
+                class="tab-pane fade"
                 id="home-edit"
                 role="tabpanel"
                 aria-labelledby="home-edit-tab"
@@ -561,7 +561,7 @@
   PHO TAB:
                             -->
                             <div
-                                class="tab-pane fade"
+                                class="tab-pane fade show active"
                                 id="profile-edit"
                                 role="tabpanel"
                                 aria-labelledby="profile-edit-tab"
