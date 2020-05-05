@@ -15,4 +15,5 @@ class BarangayController extends Controller
     public function getAllBarangays(Request $request) {
         return $this->model->where('idmun', $request->municipality_id)->get();
     }
+
 }

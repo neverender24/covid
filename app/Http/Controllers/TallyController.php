@@ -5,6 +5,7 @@ use App\Tally;
 use App\Municipality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class TallyController extends Controller
 {
@@ -78,7 +79,7 @@ class TallyController extends Controller
             return response()->json(['error' => 'You already added data to this date'], 401);
         }
 
-        return$this->model->create($request->all());
+        return $this->model->create($request->all());
     }
 
     public function edit($id) {
@@ -107,5 +108,44 @@ class TallyController extends Controller
                     ->where('municipality_id',$request->municipality_id )
                     ->where('barangay_id',$request->barangay_id )
                     ->count();
+    }
+
+    public function getAllTallies() {
+
+        $date = Input::get('date_updated');
+
+        $data = $this->model->select(
+            // 'barangay.municipality.recid',
+            // 'barangay.recid',
+            'pum_brgy',
+            'pum_brgy_completed_quarantine',
+            'pum_brgy_referred_pui',
+            'suspect_home',
+            'suspect_facility',
+            'suspect_admitted',
+            'probable_home',
+            'probable_facility',
+            'probable_admitted',
+            'negative',
+            'covid_positive',
+            'covid_discharged',
+            'covid_deaths',
+            'rapid_test',
+            'unofficial_test',
+            'official_test',
+            'date_updated',
+            'barangay_id'
+        )->with(['barangay'=>function($q) {
+            $q->with('municipality');
+        }]);
+
+        if ($date!='') {
+            $data = $data->where('date_updated', $date);
+        }
+
+        $data = $data->get();
+
+        return $data;
+
     }
 }

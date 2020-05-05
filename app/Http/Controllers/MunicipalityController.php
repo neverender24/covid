@@ -23,4 +23,7 @@ class MunicipalityController extends Controller
             return $this->model->all();
         }
     }
+    public function municapalities_barangays() {
+        return $this->model->with('barangays')->get();
+    }
 }

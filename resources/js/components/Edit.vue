@@ -873,12 +873,12 @@ export default {
           {
             text: "Yes",
             action: toast => {
-              axios.delete("tally/" + this.list.recid).then(response => {
+              `axios.delete("tally/" + this.list.recid).then(response => {
                 $("#editModal").modal("hide");
                 this.$emit("refresh");
                 this.$snotify.success("Deleted successfully", "Done");
                 this.$snotify.remove(toast.id);
-              });
+              });`
             }
           },
           {
