@@ -12,9 +12,9 @@
                 </span>
                 <p>Get the Latest Report</p>
                 <h1>Davao de Oro Covid-19 Tracker</h1>
-                <a class="button button-header" href="#" @click="reportProvince()">Provincial</a>
+                <!-- <a class="button button-header" href="#" @click="reportProvince()">Provincial</a>
                 <a class="button button-header" href="#" @click="reportMunicipality()">Municipal</a>
-                <a class="button button-header" href="#" @click="reportBrgy()">Barangay</a>
+                <a class="button button-header" href="#" @click="reportBrgy()">Barangay</a> -->
             </div>
         </section>
     </div>
